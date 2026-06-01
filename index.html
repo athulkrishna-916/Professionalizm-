@@ -198,8 +198,8 @@ footer { margin-top: 50px; padding: 20px; font-size: 0.9rem; color: #8c73a6; pos
 <button onclick="toggleTournament(); handleButtonClick();" class="btn">🏆 Tournament</button>
 </div>
 <div id="gameSection" class="game-section">
-<h3>Mini Militia Style - Flappy Cadet 🎖️</h3>
-<p>ഗ്യാസ് മാസ്ക് ധരിച്ച മിലിഷ്യ സ兵നെ പാറക്കെട്ടുകൾക്കിടയിലൂടെ രക്ഷിക്കൂ!</p>
+<h3>Bamboo Flappy 🎋</h3>
+<p>പച്ച മുളങ്കാടുകൾക്കിടയിലൂടെ നമ്മുടെ മഞ്ഞപ്പക്ഷിയെ സുരക്ഷിതമായി പറത്തൂ!</p>
 <canvas id="gameCanvas" width="320" height="400"></canvas>
 <br>
 <button id="startBtn" onclick="startGame()" class="game-menu-btn">Start Game</button>
@@ -285,7 +285,7 @@ ctx.fillStyle = "#ffffff";
 ctx.font = "bold 20px Arial";
 ctx.shadowColor = "black";
 ctx.shadowBlur = 4;
-ctx.fillText("Militia Training", 90, 150);
+ctx.fillText("Bamboo Training", 90, 150);
 ctx.font = "bold 15px Arial";
 ctx.fillStyle = "#ffe600";
 ctx.fillText("Target Score: " + TARGET_SCORE, 110, 190);
@@ -320,7 +320,7 @@ if (gameRunning) return;
 document.getElementById("startBtn").style.display = "none";
 gameRunning = true;
 score = 0;
-bird = { x: 60, y: 150, radius: 13, velocity: 0 };
+bird = { x: 60, y: 150, radius: 12, velocity: 0 };
 pipes = [];
 fireworks = [];
 canvas.addEventListener("click", playerJump);
@@ -360,7 +360,7 @@ if (bird.y + bird.radius >= canvas.height - 25 || bird.y - bird.radius <= 0) {
 gameOver();
 }
 if (pipes.length === 0 || pipes[pipes.length - 1].x < canvas.width - 150) {
-let gap = 115;
+let gap = 110;
 let minHeight = 40;
 let maxHeight = canvas.height - gap - minHeight - 25;
 let height = Math.floor(Math.random() * (maxHeight - minHeight + 1)) + minHeight;
@@ -368,7 +368,7 @@ pipes.push({
 x: canvas.width,
 topHeight: height,
 bottomY: height + gap,
-width: 46,
+width: 44,
 passed: false
 });
 }
@@ -393,47 +393,49 @@ pipes.splice(i, 1);
 }
 drawMilitiaBackground();
 for (let p of pipes) {
-ctx.fillStyle = "#5C5C5C"; 
+ctx.fillStyle = "#2D5A27"; 
 ctx.fillRect(p.x, 0, p.width, p.topHeight);
 ctx.fillRect(p.x, p.bottomY, p.width, canvas.height - p.bottomY - 25);
-ctx.fillStyle = "#474747";
-ctx.fillRect(p.x + 4, 0, 6, p.topHeight);
-ctx.fillRect(p.x + p.width - 10, 0, 6, p.topHeight);
-ctx.fillRect(p.x + 4, p.bottomY, 6, canvas.height - p.bottomY - 25);
-ctx.fillRect(p.x + p.width - 10, p.bottomY, 6, canvas.height - p.bottomY - 25);
-ctx.fillStyle = "#737373";
-ctx.fillRect(p.x, p.topHeight - 12, p.width, 12);
-ctx.fillRect(p.x, p.bottomY, p.width, 12);
+ctx.fillStyle = "#3E7537";
+ctx.fillRect(p.x + 5, 0, p.width - 10, p.topHeight);
+ctx.fillRect(p.x + 5, p.bottomY, p.width - 10, canvas.height - p.bottomY - 25);
+ctx.fillStyle = "#1E3D1A";
+ctx.fillRect(p.x, p.topHeight - 15, p.width, 10);
+ctx.fillRect(p.x, p.bottomY + 5, p.width, 10);
 }
 ctx.save();
 ctx.translate(bird.x, bird.y);
 ctx.beginPath();
 ctx.arc(0, 0, bird.radius, 0, Math.PI * 2);
-ctx.fillStyle = "#5E6B4E"; 
+ctx.fillStyle = "#ffe600"; 
 ctx.fill();
-ctx.strokeStyle = "#252B1E";
+ctx.strokeStyle = "#333";
 ctx.lineWidth = 1.5;
 ctx.stroke();
 ctx.closePath();
-ctx.fillStyle = "#3B4431";
-ctx.fillRect(-bird.radius, -4, bird.radius*2, 8);
-ctx.fillStyle = "#1A1A1A";
 ctx.beginPath();
-ctx.arc(5, -2, 4, 0, Math.PI * 2);
+ctx.arc(4, -4, 3, 0, Math.PI * 2);
+ctx.fillStyle = "#ffffff";
 ctx.fill();
 ctx.closePath();
-ctx.fillStyle = "#EAEAEA";
 ctx.beginPath();
-ctx.moveTo(3, -2);
-ctx.lineTo(8, -5);
-ctx.lineTo(8, 1);
+ctx.arc(5, -4, 1.2, 0, Math.PI * 2);
+ctx.fillStyle = "#000000";
 ctx.fill();
 ctx.closePath();
-ctx.fillStyle = "#00FF00";
-ctx.shadowColor = "#00FF00";
-ctx.shadowBlur = 8;
-ctx.fillRect(-12, bird.radius - 4, 6, 3);
-ctx.shadowBlur = 0; 
+ctx.beginPath();
+ctx.moveTo(10, -2);
+ctx.lineTo(16, 1);
+ctx.lineTo(9, 4);
+ctx.fillStyle = "#ff6600";
+ctx.fill();
+ctx.closePath();
+ctx.beginPath();
+ctx.ellipse(-4, 2, 5, 3, Math.PI / 6, 0, Math.PI * 2);
+ctx.fillStyle = "#ffffff";
+ctx.fill();
+ctx.stroke();
+ctx.closePath();
 ctx.restore();
 ctx.fillStyle = "#ffffff";
 ctx.font = "bold 22px Arial";
