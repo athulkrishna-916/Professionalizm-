@@ -10,14 +10,16 @@
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #121212; /* ഡാർക്ക് തീം */
-            color: #ffffff;
+            background-color: #f5f0ff; /* ലൈറ്റ് പർപ്പിൾ/വൈറ്റ് പശ്ചാത്തലം */
+            color: #331a4d; /* ഡാർക്ക് പർപ്പിൾ ടെക്സ്റ്റ് */
             text-align: center;
         }
 
         header {
-            background: linear-gradient(135deg, #ff416c, #ff4b2b); /* ആകർഷകമായ കളർ */
+            background: linear-gradient(135deg, #6f42c1, #a951ed); /* ആകർഷകമായ പർപ്പിൾ ഗ്രേഡിയന്റ് */
             padding: 40px 20px;
+            color: #ffffff;
+            box-shadow: 0 4px 15px rgba(111, 66, 193, 0.3);
         }
 
         header h1 {
@@ -37,11 +39,12 @@
         }
 
         .about-section {
-            background-color: #1e1e1e;
+            background-color: #ffffff; /* വൈറ്റ് ബാക്ക്ഗ്രൗണ്ട് */
             padding: 20px;
-            border-radius: 15px;
+            border-radius: 25px; /* ഇതും അല്പം റൗണ്ട് ആക്കി */
             margin-bottom: 25px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+            box-shadow: 0 4px 15px rgba(111, 66, 193, 0.1);
+            border: 1px solid #e1d5f5;
         }
 
         .btn-container {
@@ -50,36 +53,41 @@
             gap: 15px;
         }
 
+        /* 🟣 ട്രാൻസ്പാരന്റും ഫുൾ റൗണ്ടായതുമായ ബട്ടണുകൾ */
         .btn {
             display: block;
-            background-color: #00adb5;
-            color: white;
+            background-color: transparent; /* ട്രാൻസ്പാരന്റ് ആക്കി */
+            color: #6f42c1; /* പർപ്പിൾ ടെക്സ്റ്റ് */
             padding: 15px;
             text-decoration: none;
             font-size: 1.1rem;
             font-weight: bold;
-            border-radius: 10px;
-            transition: 0.3s;
+            border-radius: 50px; /* പൂർണ്ണമായും റൗണ്ട് ആക്കാൻ (Pill shape) */
+            border: 2px solid #6f42c1; /* പർപ്പിൾ ബോർഡർ നൽകി */
+            transition: 0.3s ease;
             cursor: pointer;
-            border: none;
             width: 100%;
             box-sizing: border-box;
             font-family: inherit;
         }
 
+        /* മൗസ് കൊണ്ടുവെക്കുമ്പോഴുള്ള മാറ്റം */
         .btn:hover {
-            background-color: #007880;
+            background-color: #6f42c1; /* പർപ്പിൾ ബാക്ക്ഗ്രൗണ്ട് വരും */
+            color: white; /* ടെക്സ്റ്റ് വൈറ്റ് ആകും */
             transform: scale(1.02);
+            box-shadow: 0 4px 12px rgba(111, 66, 193, 0.2);
         }
 
         /* ടൂർണമെന്റ് സ്റ്റൈലുകൾ */
         .tournament-section {
             display: none;
-            background-color: #1e1e1e;
+            background-color: #ffffff;
             padding: 25px 20px;
-            border-radius: 15px;
+            border-radius: 25px;
             margin-top: 25px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+            box-shadow: 0 4px 20px rgba(111, 66, 193, 0.15);
+            border: 1px solid #e1d5f5;
             animation: fadeIn 0.5s ease-in-out;
         }
 
@@ -95,60 +103,69 @@
             margin-top: 15px;
         }
 
+        /* 🎮 ഗെയിം സെലക്ട് ചെയ്യുന്ന ബട്ടണുകളും റൗണ്ടും ട്രാൻസ്പാരന്റും ആക്കി */
         .game-btn {
-            background-color: #ff4b2b;
+            background-color: transparent;
+            color: #a951ed;
             padding: 12px 25px;
-            border-radius: 8px;
+            border-radius: 50px; /* പൂർണ്ണമായും റൗണ്ട് ആക്കി */
+            border: 2px solid #a951ed; /* ബോർഡർ */
             font-weight: bold;
             cursor: pointer;
-            transition: 0.2s;
+            transition: 0.2s ease;
         }
 
         .game-btn:hover {
-            background-color: #ff3300;
+            background-color: #a951ed;
+            color: white;
         }
 
         .id-input-container {
             display: none;
             margin-top: 20px;
-            background-color: #2a2a2a;
+            background-color: #f5f0ff;
             padding: 15px;
-            border-radius: 10px;
+            border-radius: 20px;
+            border: 1px solid #e1d5f5;
         }
 
         .id-input-container input {
             width: 80%;
             padding: 12px;
-            border-radius: 8px;
-            border: 1px solid #444;
-            background-color: #121212;
-            color: white;
+            border-radius: 50px; /* ഇൻപുട്ട് ബോക്സും റൗണ്ട് ആക്കി */
+            border: 1px solid #cbb5f0;
+            background-color: #ffffff;
+            color: #331a4d;
             font-size: 1rem;
             text-align: center;
             margin-bottom: 15px;
+            outline: none;
         }
 
+        /* വാട്സാപ്പ് ബട്ടൺ റൗണ്ട് ആക്കിയത് */
         .submit-btn {
-            background-color: #25D366; /* വാട്സാപ്പ് ഗ്രീൻ */
-            color: white;
+            background-color: transparent;
+            color: #25D366;
             padding: 12px 20px;
-            border: none;
-            border-radius: 8px;
+            border: 2px solid #25D366; /* വാട്സാപ്പ് ഗ്രീൻ ബോർഡർ */
+            border-radius: 50px; /* പൂർണ്ണമായും റൗണ്ട് ആക്കി */
             font-weight: bold;
             font-size: 1rem;
             cursor: pointer;
             width: 80%;
+            transition: 0.2s ease;
         }
 
         .submit-btn:hover {
-            background-color: #20ba5a;
+            background-color: #25D366;
+            color: white;
         }
 
         footer {
             margin-top: 50px;
             padding: 20px;
             font-size: 0.9rem;
-            color: #777;
+            color: #8c73a6;
         }
     </style>
 </head>
@@ -162,7 +179,7 @@
 
     <!-- മെയിൻ ഭാഗം -->
     <div class="container">
-        
+
         <div class="about-section">
             <h2>ഹലോ, സ്വാഗതം!</h2>
             <p>HLO NJAN ORU CONTENT CREATOR AAHN NJAN ORU TOURNAMENT THUDENGAN AALOGIKUNNU ATHINE THUDENRNN THAZHEYULLA TOURNAMENT OPTION CLICK CHEYUKA  </p>
@@ -170,20 +187,20 @@
 
         <!-- ലിങ്കുകൾ (Buttons) -->
         <div class="btn-container">
-            <a href="https://www.youtube.com/@snap_igl" target="_blank" class="btn">🔴 YouTube Channel</a>
-            <a href="https://www.instagram.com/s_n_a_p_y_t?igsh=MWp6dnc0bHRnZzFzdA==" target="_blank" class="btn">📸 Instagram</a>
-            
-            <button onclick="toggleTournament()" class="btn">🏆 Tournament</button>
+            <a href="https://www.youtube.com/@snap_igl" target="_blank" onclick="playClickSound()" class="btn">🔴 YouTube Channel</a>
+            <a href="https://www.instagram.com/s_n_a_y_t?igsh=MWp6dnc0bHRnZzFzdA==" target="_blank" onclick="playClickSound()" class="btn">📸 Instagram</a>
+
+            <button onclick="toggleTournament(); playClickSound();" class="btn">🏆 Tournament</button>
         </div>
 
         <!-- ടൂർണമെന്റ് ചോയ്‌സ് സെക്ഷൻ -->
         <div id="tournamentSection" class="tournament-section">
             <h3>Select Your Game</h3>
             <p>ടൂർണമെന്റിൽ പങ്കെടുക്കാൻ ഗെയിം തിരഞ്ഞെടുക്കുക:</p>
-            
+
             <div class="game-options">
-                <div class="game-btn" onclick="showIdInput('BGMI')">PUBG / BGMI</div>
-                <div class="game-btn" onclick="showIdInput('Free Fire')">Free Fire</div>
+                <div class="game-btn" onclick="showIdInput('BGMI'); playClickSound();">PUBG / BGMI</div>
+                <div class="game-btn" onclick="showIdInput('Free Fire'); playClickSound();">Free Fire</div>
             </div>
 
             <!-- ഐഡി ടൈപ്പ് ചെയ്യാനുള്ള ബോക്സ് -->
@@ -191,7 +208,7 @@
                 <h4 id="selectedGameTitle">Enter Game ID</h4>
                 <input type="text" id="gameIdInput" placeholder="Enter your Character ID here...">
                 <br>
-                <button onclick="sendToWhatsApp()" class="submit-btn">Send ID via WhatsApp 💬</button>
+                <button onclick="sendToWhatsApp(); playClickSound();" class="submit-btn">Send ID via WhatsApp 💬</button>
             </div>
         </div>
 
@@ -205,6 +222,15 @@
     <!-- ജാവാസ്ക്രിപ്റ്റ് കോഡ് -->
     <script>
         let selectedGame = "";
+
+        // 🎵 ചെറിയ ക്ലിക്ക് സൗണ്ട് പ്ലേ ചെയ്യാനുള്ള ഫങ്ക്ഷൻ
+        function playClickSound() {
+            let clickAudio = new Audio('https://assets.mixkit.co/active_storage/sfx/2568/2568-84.wav');
+            clickAudio.volume = 0.5; 
+            clickAudio.play().catch(function(error) {
+                console.log("സൗണ്ട് പ്ലേ ചെയ്യാൻ യൂസർ ക്ലിക്ക് ചെയ്യേണ്ടതുണ്ട്:", error);
+            });
+        }
 
         function toggleTournament() {
             let section = document.getElementById("tournamentSection");
@@ -225,23 +251,22 @@
 
         function sendToWhatsApp() {
             let gameId = document.getElementById("gameIdInput").value.trim();
-            
+
             if (gameId === "") {
                 alert("ദയവായി നിങ്ങളുടെ ഗെയിം ഐഡി ടൈപ്പ് ചെയ്യൂ!");
                 return;
             }
 
             let whatsappNumber = "918138098290"; 
-            
+
             let message = "ഹലോ അതുൽ, ഞാൻ ടൂർണമെന്റിൽ രജിസ്റ്റർ ചെയ്യാൻ താല്പര്യപ്പെടുന്നു.\n\n🎮 *Game:* " + selectedGame + "\n🆔 *Player ID:* " + gameId;
-            
-            // 🟢 പുതിയ ലിങ്ക് ഫോർമാറ്റ് - ബ്രൗസറിലെ എററുകൾ ഒഴിവാക്കാൻ ഇത് സഹായിക്കും
+
             let whatsappUrl = "https://api.whatsapp.com/send?phone=" + whatsappNumber + "&text=" + encodeURIComponent(message);
-            
+
             window.location.href = whatsappUrl; 
         }
     </script>
 
 </body>
-                </html>
-                
+    </html>
+    
