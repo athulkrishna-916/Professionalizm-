@@ -13,6 +13,45 @@
             background-color: #f5f0ff; /* ലൈറ്റ് പർപ്പിൾ/വൈറ്റ് പശ്ചാത്തലം */
             color: #331a4d; /* ഡാർക്ക് പർപ്പിൾ ടെക്സ്റ്റ് */
             text-align: center;
+            overflow-x: hidden;
+            position: relative;
+            min-height: 100vh;
+        }
+
+        /* 🔮 ആനിമേറ്റഡ് ബോളുകൾ വരാനുള്ള കണ്ടെയ്നർ */
+        #animation-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1; /* ടെക്സ്റ്റിന് പിന്നിൽ പോകാൻ */
+            pointer-events: none; /* ബട്ടൺ ക്ലിക്ക് തടസ്സപ്പെടുത്താതിരിക്കാൻ */
+        }
+
+        /* ബോളുകളുടെ സ്റ്റൈൽ */
+        .ball {
+            position: absolute;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(169,81,237,0.6) 0%, rgba(111,66,193,0.2) 100%);
+            animation: floatUp 4s linear forwards;
+        }
+
+        @keyframes floatUp {
+            0% {
+                transform: translateY(100vh) scale(0) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.8;
+            }
+            90% {
+                opacity: 0.8;
+            }
+            100% {
+                transform: translateY(-10vh) scale(1.5) rotate(360deg);
+                opacity: 0;
+            }
         }
 
         header {
@@ -36,15 +75,18 @@
             padding: 30px 20px;
             max-width: 600px;
             margin: auto;
+            position: relative;
+            z-index: 1;
         }
 
         .about-section {
-            background-color: #ffffff; /* വൈറ്റ് ബാക്ക്ഗ്രൗണ്ട് */
+            background-color: rgba(255, 255, 255, 0.9); /* ചെറുതായി ട്രാൻസ്പാരന്റ് വൈറ്റ് */
             padding: 20px;
-            border-radius: 25px; /* ഇതും അല്പം റൗണ്ട് ആക്കി */
+            border-radius: 25px;
             margin-bottom: 25px;
             box-shadow: 0 4px 15px rgba(111, 66, 193, 0.1);
             border: 1px solid #e1d5f5;
+            backdrop-filter: blur(5px); /* ബാക്ക്ഗ്രൗണ്ട് ബ്ലർ ലുക്ക് */
         }
 
         .btn-container {
@@ -56,14 +98,14 @@
         /* 🟣 ട്രാൻസ്പാരന്റും ഫുൾ റൗണ്ടായതുമായ ബട്ടണുകൾ */
         .btn {
             display: block;
-            background-color: transparent; /* ട്രാൻസ്പാരന്റ് ആക്കി */
-            color: #6f42c1; /* പർപ്പിൾ ടെക്സ്റ്റ് */
+            background-color: transparent;
+            color: #6f42c1;
             padding: 15px;
             text-decoration: none;
             font-size: 1.1rem;
             font-weight: bold;
-            border-radius: 50px; /* പൂർണ്ണമായും റൗണ്ട് ആക്കാൻ (Pill shape) */
-            border: 2px solid #6f42c1; /* പർപ്പിൾ ബോർഡർ നൽകി */
+            border-radius: 50px;
+            border: 2px solid #6f42c1;
             transition: 0.3s ease;
             cursor: pointer;
             width: 100%;
@@ -71,10 +113,9 @@
             font-family: inherit;
         }
 
-        /* മൗസ് കൊണ്ടുവെക്കുമ്പോഴുള്ള മാറ്റം */
         .btn:hover {
-            background-color: #6f42c1; /* പർപ്പിൾ ബാക്ക്ഗ്രൗണ്ട് വരും */
-            color: white; /* ടെക്സ്റ്റ് വൈറ്റ് ആകും */
+            background-color: #6f42c1;
+            color: white;
             transform: scale(1.02);
             box-shadow: 0 4px 12px rgba(111, 66, 193, 0.2);
         }
@@ -82,12 +123,13 @@
         /* ടൂർണമെന്റ് സ്റ്റൈലുകൾ */
         .tournament-section {
             display: none;
-            background-color: #ffffff;
+            background-color: rgba(255, 255, 255, 0.9);
             padding: 25px 20px;
             border-radius: 25px;
             margin-top: 25px;
             box-shadow: 0 4px 20px rgba(111, 66, 193, 0.15);
             border: 1px solid #e1d5f5;
+            backdrop-filter: blur(5px);
             animation: fadeIn 0.5s ease-in-out;
         }
 
@@ -103,13 +145,12 @@
             margin-top: 15px;
         }
 
-        /* 🎮 ഗെയിം സെലക്ട് ചെയ്യുന്ന ബട്ടണുകളും റൗണ്ടും ട്രാൻസ്പാരന്റും ആക്കി */
         .game-btn {
             background-color: transparent;
             color: #a951ed;
             padding: 12px 25px;
-            border-radius: 50px; /* പൂർണ്ണമായും റൗണ്ട് ആക്കി */
-            border: 2px solid #a951ed; /* ബോർഡർ */
+            border-radius: 50px;
+            border: 2px solid #a951ed;
             font-weight: bold;
             cursor: pointer;
             transition: 0.2s ease;
@@ -123,7 +164,7 @@
         .id-input-container {
             display: none;
             margin-top: 20px;
-            background-color: #f5f0ff;
+            background-color: rgba(245, 240, 255, 0.8);
             padding: 15px;
             border-radius: 20px;
             border: 1px solid #e1d5f5;
@@ -132,7 +173,7 @@
         .id-input-container input {
             width: 80%;
             padding: 12px;
-            border-radius: 50px; /* ഇൻപുട്ട് ബോക്സും റൗണ്ട് ആക്കി */
+            border-radius: 50px;
             border: 1px solid #cbb5f0;
             background-color: #ffffff;
             color: #331a4d;
@@ -142,13 +183,12 @@
             outline: none;
         }
 
-        /* വാട്സാപ്പ് ബട്ടൺ റൗണ്ട് ആക്കിയത് */
         .submit-btn {
             background-color: transparent;
             color: #25D366;
             padding: 12px 20px;
-            border: 2px solid #25D366; /* വാട്സാപ്പ് ഗ്രീൻ ബോർഡർ */
-            border-radius: 50px; /* പൂർണ്ണമായും റൗണ്ട് ആക്കി */
+            border: 2px solid #25D366;
+            border-radius: 50px;
             font-weight: bold;
             font-size: 1rem;
             cursor: pointer;
@@ -166,18 +206,20 @@
             padding: 20px;
             font-size: 0.9rem;
             color: #8c73a6;
+            position: relative;
+            z-index: 1;
         }
     </style>
 </head>
 <body>
 
-    <!-- ഹെഡർ ഭാഗം -->
+    <div id="animation-container"></div>
+
     <header>
         <h1>Welcome To My World</h1>
         <p>Gaming | Content Creation | Tech</p>
     </header>
 
-    <!-- മെയിൻ ഭാഗം -->
     <div class="container">
 
         <div class="about-section">
@@ -185,51 +227,81 @@
             <p>HLO NJAN ORU CONTENT CREATOR AAHN NJAN ORU TOURNAMENT THUDENGAN AALOGIKUNNU ATHINE THUDENRNN THAZHEYULLA TOURNAMENT OPTION CLICK CHEYUKA  </p>
         </div>
 
-        <!-- ലിങ്കുകൾ (Buttons) -->
         <div class="btn-container">
-            <a href="https://www.youtube.com/@snap_igl" target="_blank" onclick="playClickSound()" class="btn">🔴 YouTube Channel</a>
-            <a href="https://www.instagram.com/s_n_a_y_t?igsh=MWp6dnc0bHRnZzFzdA==" target="_blank" onclick="playClickSound()" class="btn">📸 Instagram</a>
+            <a href="https://www.youtube.com/@snap_igl" target="_blank" onclick="handleButtonClick()" class="btn">🔴 YouTube Channel</a>
+            <a href="https://www.instagram.com/s_n_a_p_y_t?igsh=MWp6dnc0bHRnZzFzdA==" target="_blank" onclick="handleButtonClick()" class="btn">📸 Instagram</a>
 
-            <button onclick="toggleTournament(); playClickSound();" class="btn">🏆 Tournament</button>
+            <button onclick="toggleTournament(); handleButtonClick();" class="btn">🏆 Tournament</button>
         </div>
 
-        <!-- ടൂർണമെന്റ് ചോയ്‌സ് സെക്ഷൻ -->
         <div id="tournamentSection" class="tournament-section">
             <h3>Select Your Game</h3>
             <p>ടൂർണമെന്റിൽ പങ്കെടുക്കാൻ ഗെയിം തിരഞ്ഞെടുക്കുക:</p>
 
             <div class="game-options">
-                <div class="game-btn" onclick="showIdInput('BGMI'); playClickSound();">PUBG / BGMI</div>
-                <div class="game-btn" onclick="showIdInput('Free Fire'); playClickSound();">Free Fire</div>
+                <div class="game-btn" onclick="showIdInput('BGMI'); handleButtonClick();">PUBG / BGMI</div>
+                <div class="game-btn" onclick="showIdInput('Free Fire'); handleButtonClick();">Free Fire</div>
             </div>
 
-            <!-- ഐഡി ടൈപ്പ് ചെയ്യാനുള്ള ബോക്സ് -->
             <div id="idInputContainer" class="id-input-container">
                 <h4 id="selectedGameTitle">Enter Game ID</h4>
                 <input type="text" id="gameIdInput" placeholder="Enter your Character ID here...">
                 <br>
-                <button onclick="sendToWhatsApp(); playClickSound();" class="submit-btn">Send ID via WhatsApp 💬</button>
+                <button onclick="sendToWhatsApp(); handleButtonClick();" class="submit-btn">Send ID via WhatsApp 💬</button>
             </div>
         </div>
 
     </div>
 
-    <!-- ഫൂട്ടർ -->
     <footer>
         <p>© 2026 Designed on Mobile</p>
     </footer>
 
-    <!-- ജാവാസ്ക്രിപ്റ്റ് കോഡ് -->
     <script>
         let selectedGame = "";
 
-        // 🎵 ചെറിയ ക്ലിക്ക് സൗണ്ട് പ്ലേ ചെയ്യാനുള്ള ഫങ്ക്ഷൻ
+        // 🎵 ബട്ടൺ അമർത്തുമ്പോൾ സൗണ്ടും ആനിമേഷനും ഒന്നിച്ച് പ്രവർത്തിപ്പിക്കാൻ
+        function handleButtonClick() {
+            playClickSound();
+            createBallsAnimation();
+        }
+
+        // ക്ലിക്ക് സൗണ്ട് ഫങ്ക്ഷൻ
         function playClickSound() {
             let clickAudio = new Audio('https://assets.mixkit.co/active_storage/sfx/2568/2568-84.wav');
             clickAudio.volume = 0.5; 
             clickAudio.play().catch(function(error) {
-                console.log("സൗണ്ട് പ്ലേ ചെയ്യാൻ യൂസർ ക്ലിക്ക് ചെയ്യേണ്ടതുണ്ട്:", error);
+                console.log("Sound error:", error);
             });
+        }
+
+        // 🔮 ബാക്ക്ഗ്രൗണ്ടിൽ ബോളുകൾ ഉണ്ടാക്കുന്ന ഫങ്ക്ഷൻ
+        function createBallsAnimation() {
+            let container = document.getElementById("animation-container");
+            
+            // ഒരേ സമയം 5 ബോളുകൾ വരെ ഉണ്ടാക്കാൻ
+            for (let i = 0; i < 5; i++) {
+                let ball = document.createElement("div");
+                ball.classList.add("ball");
+                
+                // ബോളുകളുടെ വലിപ്പം റാൻഡം ആയി സെറ്റ് ചെയ്യുന്നു (20px മുതൽ 60px വരെ)
+                let size = Math.floor(Math.random() * 40) + 20;
+                ball.style.width = size + "px";
+                ball.style.height = size + "px";
+                
+                // സ്ക്രീനിന്റെ പല ഭാഗത്തുനിന്നും ബോളുകൾ വരാൻ (Left position random)
+                ball.style.left = Math.floor(Math.random() * 100) + "vw";
+                
+                // ഓരോ ബോളിനും ചെറിയ സമയ വ്യത്യാസം നൽകാൻ
+                ball.style.animationDelay = (Math.random() * 0.5) + "s";
+                
+                container.appendChild(ball);
+                
+                // ആനിമേഷൻ കഴിഞ്ഞാൽ ബോൾ ഡിലീറ്റ് ചെയ്യുക (വെബ്‌സൈറ്റ് ഹാങ് ആവാതിരിക്കാൻ)
+                setTimeout(() => {
+                    ball.remove();
+                }, 4000);
+            }
         }
 
         function toggleTournament() {
@@ -268,5 +340,4 @@
     </script>
 
 </body>
-    </html>
-    
+</html>
