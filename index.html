@@ -100,7 +100,7 @@ backdrop-filter: blur(5px);
 animation: fadeIn 0.5s ease-in-out;
 }
 #gameCanvas {
-background-color: #70c5ce;
+background-color: #526335;
 border-radius: 15px;
 display: block;
 margin: 15px auto;
@@ -192,17 +192,16 @@ footer { margin-top: 50px; padding: 20px; font-size: 0.9rem; color: #8c73a6; pos
 <p>HLO NJAN ORU CONTENT CREATOR AAHN NJAN ORU TOURNAMENT THUDENGAN AALOGIKUNNU ATHINE THUDENRNN THAZHEYULLA TOURNAMENT OPTION CLICK CHEYUKA  </p>
 </div>
 <div class="btn-container">
-<a href="[https://www.youtube.com/@snap_igl](https://www.youtube.com/@snap_igl)" target="_blank" onclick="handleButtonClick()" class="btn">🔴 YouTube Channel</a>
-<a href="[https://www.instagram.com/s_n_a_p_y_t?igsh=MWp6dnc0bHRnZzFzdA==](https://www.instagram.com/s_n_a_p_y_t?igsh=MWp6dnc0bHRnZzFzdA==)" target="_blank" onclick="handleButtonClick()" class="btn">📸 Instagram</a>
+<a href="https://www.youtube.com/@snap_igl" target="_blank" onclick="handleButtonClick()" class="btn">🔴 YouTube Channel</a>
+<a href="https://www.instagram.com/s_n_a_p_y_t?igsh=MWp6dnc0bHRnZzFzdA==" target="_blank" onclick="handleButtonClick()" class="btn">📸 Instagram</a>
 <button onclick="toggleGame(); handleButtonClick();" class="btn">🎮 Game</button>
 <button onclick="toggleTournament(); handleButtonClick();" class="btn">🏆 Tournament</button>
 </div>
 <div id="gameSection" class="game-section">
-<h3>Flappy Bird 🐦</h3>
-<p>സ്ക്രീനിൽ ടാപ്പ് ചെയ്ത് പക്ഷിയെ പൈപ്പുകളിൽ മുട്ടാതെ രക്ഷിക്കൂ!</p>
+<h3>Mini Militia Style - Flappy Cadet 🎖️</h3>
+<p>ഗ്യാസ് മാസ്ക് ധരിച്ച മിലിഷ്യ സ兵നെ പാറക്കെട്ടുകൾക്കിടയിലൂടെ രക്ഷിക്കൂ!</p>
 <canvas id="gameCanvas" width="320" height="400"></canvas>
-
-
+<br>
 <button id="startBtn" onclick="startGame()" class="game-menu-btn">Start Game</button>
 </div>
 <div id="tournamentSection" class="tournament-section">
@@ -215,8 +214,7 @@ footer { margin-top: 50px; padding: 20px; font-size: 0.9rem; color: #8c73a6; pos
 <div id="idInputContainer" class="id-input-container">
 <h4 id="selectedGameTitle">Enter Game ID</h4>
 <input type="text" id="gameIdInput" placeholder="Enter your Character ID here...">
-
-
+<br>
 <button onclick="sendToWhatsApp(); handleButtonClick();" class="submit-btn">Send ID via WhatsApp 💬</button>
 </div>
 </div>
@@ -282,23 +280,47 @@ const gravity = 0.25;
 const jump = -4.5;
 const TARGET_SCORE = 15;
 function initGameCanvas() {
-ctx.clearRect(0, 0, canvas.width, canvas.height);
+drawMilitiaBackground();
 ctx.fillStyle = "#ffffff";
 ctx.font = "bold 20px Arial";
-ctx.fillText("Ready to Play?", 95, 150);
+ctx.shadowColor = "black";
+ctx.shadowBlur = 4;
+ctx.fillText("Militia Training", 90, 150);
 ctx.font = "bold 15px Arial";
 ctx.fillStyle = "#ffe600";
-ctx.fillText("Target Score to Win: " + TARGET_SCORE, 75, 190);
+ctx.fillText("Target Score: " + TARGET_SCORE, 110, 190);
 ctx.fillStyle = "#ffffff";
 ctx.font = "14px Arial";
-ctx.fillText("Click 'Start Game' below", 85, 230);
+ctx.fillText("Click 'Start Game' to Fly", 85, 230);
+ctx.shadowBlur = 0; 
+}
+function drawMilitiaBackground() {
+let gradient = ctx.createLinearGradient(0, 0, 0, canvas.height);
+gradient.addColorStop(0, "#4A752C"); 
+gradient.addColorStop(0.4, "#83A35D"); 
+gradient.addColorStop(0.8, "#556B2F"); 
+gradient.addColorStop(1, "#2E3B1E"); 
+ctx.fillStyle = gradient;
+ctx.fillRect(0, 0, canvas.width, canvas.height);
+ctx.fillStyle = "#3d4d24";
+ctx.beginPath();
+ctx.arc(40, 80, 25, 0, Math.PI*2);
+ctx.arc(80, 70, 35, 0, Math.PI*2);
+ctx.arc(130, 85, 20, 0, Math.PI*2);
+ctx.arc(220, 60, 40, 0, Math.PI*2);
+ctx.arc(280, 75, 30, 0, Math.PI*2);
+ctx.fill();
+ctx.fillStyle = "#8B5A2B"; 
+ctx.fillRect(0, canvas.height - 25, canvas.width, 25);
+ctx.fillStyle = "#556B2F"; 
+ctx.fillRect(0, canvas.height - 25, canvas.width, 6);
 }
 function startGame() {
 if (gameRunning) return;
 document.getElementById("startBtn").style.display = "none";
 gameRunning = true;
 score = 0;
-bird = { x: 60, y: 150, radius: 12, velocity: 0 };
+bird = { x: 60, y: 150, radius: 13, velocity: 0 };
 pipes = [];
 fireworks = [];
 canvas.addEventListener("click", playerJump);
@@ -334,19 +356,19 @@ color: color
 function updateGame() {
 bird.velocity += gravity;
 bird.y += bird.velocity;
-if (bird.y + bird.radius >= canvas.height || bird.y - bird.radius <= 0) {
+if (bird.y + bird.radius >= canvas.height - 25 || bird.y - bird.radius <= 0) {
 gameOver();
 }
 if (pipes.length === 0 || pipes[pipes.length - 1].x < canvas.width - 150) {
-let gap = 110;
+let gap = 115;
 let minHeight = 40;
-let maxHeight = canvas.height - gap - minHeight;
+let maxHeight = canvas.height - gap - minHeight - 25;
 let height = Math.floor(Math.random() * (maxHeight - minHeight + 1)) + minHeight;
 pipes.push({
 x: canvas.width,
 topHeight: height,
 bottomY: height + gap,
-width: 44,
+width: 46,
 passed: false
 });
 }
@@ -369,68 +391,63 @@ if (pipes[i].x + pipes[i].width < 0) {
 pipes.splice(i, 1);
 }
 }
-ctx.clearRect(0, 0, canvas.width, canvas.height);
-ctx.fillStyle = "#a951ed";
+drawMilitiaBackground();
 for (let p of pipes) {
+ctx.fillStyle = "#5C5C5C"; 
 ctx.fillRect(p.x, 0, p.width, p.topHeight);
-ctx.fillRect(p.x, p.bottomY, p.width, canvas.height - p.bottomY);
+ctx.fillRect(p.x, p.bottomY, p.width, canvas.height - p.bottomY - 25);
+ctx.fillStyle = "#474747";
+ctx.fillRect(p.x + 4, 0, 6, p.topHeight);
+ctx.fillRect(p.x + p.width - 10, 0, 6, p.topHeight);
+ctx.fillRect(p.x + 4, p.bottomY, 6, canvas.height - p.bottomY - 25);
+ctx.fillRect(p.x + p.width - 10, p.bottomY, 6, canvas.height - p.bottomY - 25);
+ctx.fillStyle = "#737373";
+ctx.fillRect(p.x, p.topHeight - 12, p.width, 12);
+ctx.fillRect(p.x, p.bottomY, p.width, 12);
 }
 ctx.save();
 ctx.translate(bird.x, bird.y);
 ctx.beginPath();
 ctx.arc(0, 0, bird.radius, 0, Math.PI * 2);
-ctx.fillStyle = "#ffe600";
+ctx.fillStyle = "#5E6B4E"; 
 ctx.fill();
-ctx.strokeStyle = "#333";
+ctx.strokeStyle = "#252B1E";
 ctx.lineWidth = 1.5;
 ctx.stroke();
 ctx.closePath();
+ctx.fillStyle = "#3B4431";
+ctx.fillRect(-bird.radius, -4, bird.radius*2, 8);
+ctx.fillStyle = "#1A1A1A";
 ctx.beginPath();
-ctx.arc(4, -4, 3, 0, Math.PI * 2);
-ctx.fillStyle = "#ffffff";
+ctx.arc(5, -2, 4, 0, Math.PI * 2);
 ctx.fill();
 ctx.closePath();
+ctx.fillStyle = "#EAEAEA";
 ctx.beginPath();
-ctx.arc(5, -4, 1.2, 0, Math.PI * 2);
-ctx.fillStyle = "#000000";
+ctx.moveTo(3, -2);
+ctx.lineTo(8, -5);
+ctx.lineTo(8, 1);
 ctx.fill();
 ctx.closePath();
-ctx.beginPath();
-ctx.moveTo(10, -2);
-ctx.lineTo(16, 1);
-ctx.lineTo(9, 4);
-ctx.fillStyle = "#ff6600";
-ctx.fill();
-ctx.closePath();
-ctx.beginPath();
-ctx.ellipse(-4, 2, 5, 3, Math.PI / 6, 0, Math.PI * 2);
-ctx.fillStyle = "#ffffff";
-ctx.fill();
-ctx.stroke();
-ctx.closePath();
+ctx.fillStyle = "#00FF00";
+ctx.shadowColor = "#00FF00";
+ctx.shadowBlur = 8;
+ctx.fillRect(-12, bird.radius - 4, 6, 3);
+ctx.shadowBlur = 0; 
 ctx.restore();
 ctx.fillStyle = "#ffffff";
 ctx.font = "bold 22px Arial";
+ctx.shadowColor = "black";
+ctx.shadowBlur = 4;
 ctx.fillText("Score: " + score + " / " + TARGET_SCORE, 15, 35);
-ctx.font = "bold 13px Arial";
-if (score >= 13) {
-ctx.fillStyle = "#ffe600";
-ctx.fillText("Gold Tier reached!", 15, 60);
-} else if (score >= 10) {
-ctx.fillStyle = "#e0e0e0";
-ctx.fillText("Silver Tier reached!", 15, 60);
-} else if (score >= 5) {
-ctx.fillStyle = "#cd7f32";
-ctx.fillText("Bronze Tier reached!", 15, 60);
-}
+ctx.shadowBlur = 0;
 }
 function gameWin() {
 clearInterval(gameInterval);
 gameRunning = false;
-let winLoopCount = 0;
 let winInterval = setInterval(() => {
 ctx.clearRect(0, 0, canvas.width, canvas.height);
-ctx.fillStyle = "rgba(111, 66, 193, 0.9)";
+ctx.fillStyle = "rgba(46, 59, 30, 0.95)";
 ctx.fillRect(0, 0, canvas.width, canvas.height);
 if (Math.random() < 0.3) createFirework();
 for (let i = fireworks.length - 1; i >= 0; i--) {
@@ -451,16 +468,18 @@ ctx.restore();
 }
 }
 ctx.fillStyle = "#ffe600";
-ctx.font = "bold 35px Arial";
-ctx.fillText("VICTORY! ", 45, 150);
+ctx.font = "bold 32px Arial";
+ctx.shadowColor = "black";
+ctx.shadowBlur = 4;
+ctx.fillText("MISSION PASSED! ", 22, 150);
 ctx.fillStyle = "#ffffff";
-ctx.font = "bold 20px Arial";
-ctx.fillText("You Scored " + score + " Points!", 65, 200);
+ctx.font = "bold 18px Arial";
+ctx.fillText("Rank: Commander 🎖️", 70, 200);
 ctx.fillStyle = "#00ffcc";
-ctx.font = "bold 16px Arial";
-ctx.fillText("Reward: ULTRA GOLD MEDAL!", 40, 240);
-winLoopCount++;
-if (!document.getElementById("gameSection").style.display === "block") {
+ctx.font = "bold 15px Arial";
+ctx.fillText("Score Level Complete!", 65, 240);
+ctx.shadowBlur = 0;
+if (document.getElementById("gameSection").style.display === "none") {
 clearInterval(winInterval);
 }
 }, 1000 / 40);
@@ -478,26 +497,15 @@ ctx.fillStyle = "rgba(0, 0, 0, 0.75)";
 ctx.fillRect(0, 0, canvas.width, canvas.height);
 ctx.fillStyle = "#ff4b2b";
 ctx.font = "bold 32px Arial";
-ctx.fillText("GAME OVER ", 55, 150);
+ctx.shadowColor = "black";
+ctx.shadowBlur = 4;
+ctx.fillText("WASTED 💀", 75, 150);
 ctx.fillStyle = "#ffffff";
 ctx.font = "bold 18px Arial";
 ctx.fillText("Your Score: " + score, 110, 195);
-ctx.font = "bold 16px Arial";
-if (score >= 13) {
-ctx.fillStyle = "#ffe600";
-ctx.fillText("Reward: GOLD MEDAL!", 65, 245);
-} else if (score >= 10) {
-ctx.fillStyle = "#e0e0e0";
-ctx.fillText("Reward: SILVER MEDAL!", 65, 245);
-} else if (score >= 5) {
-ctx.fillStyle = "#cd7f32";
-ctx.fillText("Reward: BRONZE MEDAL!", 60, 245);
-} else {
-ctx.fillStyle = "#ff9999";
-ctx.fillText("Better luck next time! ", 70, 245);
-}
+ctx.shadowBlur = 0;
 document.getElementById("startBtn").style.display = "inline-block";
-document.getElementById("startBtn").innerText = "Try Again ";
+document.getElementById("startBtn").innerText = "Respawn 🔄";
 document.getElementById("startBtn").onclick = startGame;
 }
 function showIdInput(gameName) {
