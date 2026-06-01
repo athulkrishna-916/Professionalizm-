@@ -7,27 +7,16 @@
 <style>
 body {
 font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-margin: 0;
-padding: 0;
-background-color: #f5f0ff;
-color: #331a4d;
-text-align: center;
-overflow-x: hidden;
-position: relative;
-min-height: 100vh;
+margin: 0; padding: 0;
+background-color: #f5f0ff; color: #331a4d;
+text-align: center; overflow-x: hidden;
+position: relative; min-height: 100vh;
 }
 #animation-container {
-position: fixed;
-top: 0;
-left: 0;
-width: 100%;
-height: 100%;
-z-index: -1;
-pointer-events: none;
+position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; pointer-events: none;
 }
 .ball {
-position: absolute;
-border-radius: 50%;
+position: absolute; border-radius: 50%;
 background: radial-gradient(circle, rgba(169,81,237,0.6) 0%, rgba(111,66,193,0.2) 100%);
 animation: floatUp 4s linear forwards;
 }
@@ -39,143 +28,53 @@ animation: floatUp 4s linear forwards;
 }
 header {
 background: linear-gradient(135deg, #6f42c1, #a951ed);
-padding: 40px 20px;
-color: #ffffff;
+padding: 40px 20px; color: #ffffff;
 box-shadow: 0 4px 15px rgba(111, 66, 193, 0.3);
 }
 header h1 { margin: 0; font-size: 2.5rem; }
 header p { font-size: 1.2rem; opacity: 0.9; }
-.container {
-padding: 30px 20px;
-max-width: 600px;
-margin: auto;
-position: relative;
-z-index: 1;
-}
+.container { padding: 30px 20px; max-width: 600px; margin: auto; position: relative; z-index: 1; }
 .about-section {
-background-color: rgba(255, 255, 255, 0.9);
-padding: 20px;
-border-radius: 25px;
-margin-bottom: 25px;
-box-shadow: 0 4px 15px rgba(111, 66, 193, 0.1);
-border: 1px solid #e1d5f5;
-backdrop-filter: blur(5px);
+background-color: rgba(255, 255, 255, 0.9); padding: 20px; border-radius: 25px;
+margin-bottom: 25px; box-shadow: 0 4px 15px rgba(111, 66, 193, 0.1);
+border: 1px solid #e1d5f5; backdrop-filter: blur(5px);
 }
-.btn-container {
-display: flex;
-flex-direction: column;
-gap: 15px;
-}
+.btn-container { display: flex; flex-direction: column; gap: 15px; }
 .btn {
-display: block;
-background-color: transparent;
-color: #6f42c1;
-padding: 15px;
-text-decoration: none;
-font-size: 1.1rem;
-font-weight: bold;
-border-radius: 50px;
-border: 2px solid #6f42c1;
-transition: 0.3s ease;
-cursor: pointer;
-width: 100%;
-box-sizing: border-box;
-font-family: inherit;
+display: block; background-color: transparent; color: #6f42c1; padding: 15px;
+text-decoration: none; font-size: 1.1rem; font-weight: bold; border-radius: 50px;
+border: 2px solid #6f42c1; transition: 0.3s ease; cursor: pointer; width: 100%; box-sizing: border-box;
 }
-.btn:hover {
-background-color: #6f42c1;
-color: white;
-transform: scale(1.02);
-box-shadow: 0 4px 12px rgba(111, 66, 193, 0.2);
-}
+.btn:hover { background-color: #6f42c1; color: white; transform: scale(1.02); box-shadow: 0 4px 12px rgba(111, 66, 193, 0.2); }
 .game-section {
-display: none;
-background-color: rgba(255, 255, 255, 0.95);
-padding: 20px;
-border-radius: 25px;
-margin-top: 25px;
-box-shadow: 0 4px 20px rgba(111, 66, 193, 0.2);
-border: 1px solid #e1d5f5;
-backdrop-filter: blur(5px);
-animation: fadeIn 0.5s ease-in-out;
+display: none; background-color: rgba(255, 255, 255, 0.95); padding: 20px;
+border-radius: 25px; margin-top: 25px; box-shadow: 0 4px 20px rgba(111, 66, 193, 0.2);
+border: 1px solid #e1d5f5; backdrop-filter: blur(5px);
 }
-#gameCanvas {
-background-color: #526335;
-border-radius: 15px;
-display: block;
-margin: 15px auto;
-max-width: 100%;
-border: 3px solid #6f42c1;
-cursor: pointer;
+.game-menu { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin-bottom: 15px; }
+.game-select-btn {
+background-color: transparent; color: #6f42c1; border: 2px solid #6f42c1;
+padding: 6px 12px; border-radius: 20px; font-weight: bold; font-size: 0.9rem; cursor: pointer; transition: 0.2s;
 }
+.game-select-btn.active { background-color: #6f42c1; color: white; }
+#gameCanvas { background-color: #222; border-radius: 15px; display: block; margin: 15px auto; max-width: 100%; border: 3px solid #6f42c1; cursor: pointer; }
 .game-menu-btn {
-background-color: #6f42c1;
-color: white;
-padding: 12px 30px;
-border: none;
-border-radius: 50px;
-font-size: 1.1rem;
-font-weight: bold;
-cursor: pointer;
-transition: 0.2s;
+background-color: #6f42c1; color: white; padding: 12px 30px; border: none;
+border-radius: 50px; font-size: 1.1rem; font-weight: bold; cursor: pointer; transition: 0.2s;
 box-shadow: 0 4px 10px rgba(111, 66, 193, 0.3);
 }
 .game-menu-btn:hover { background-color: #59339e; }
 .tournament-section {
-display: none;
-background-color: rgba(255, 255, 255, 0.9);
-padding: 25px 20px;
-border-radius: 25px;
-margin-top: 25px;
-box-shadow: 0 4px 20px rgba(111, 66, 193, 0.15);
-border: 1px solid #e1d5f5;
-backdrop-filter: blur(5px);
-animation: fadeIn 0.5s ease-in-out;
+display: none; background-color: rgba(255, 255, 255, 0.9); padding: 25px 20px;
+border-radius: 25px; margin-top: 25px; box-shadow: 0 4px 20px rgba(111, 66, 193, 0.15);
+border: 1px solid #e1d5f5; backdrop-filter: blur(5px);
 }
 .game-options { display: flex; gap: 15px; justify-content: center; margin-top: 15px; }
-.game-btn {
-background-color: transparent;
-color: #a951ed;
-padding: 12px 25px;
-border-radius: 50px;
-border: 2px solid #a951ed;
-font-weight: bold;
-cursor: pointer;
-transition: 0.2s ease;
-}
+.game-btn { background-color: transparent; color: #a951ed; padding: 12px 25px; border-radius: 50px; border: 2px solid #a951ed; font-weight: bold; cursor: pointer; transition: 0.2s ease; }
 .game-btn:hover { background-color: #a951ed; color: white; }
-.id-input-container {
-display: none;
-margin-top: 20px;
-background-color: rgba(245, 240, 255, 0.8);
-padding: 15px;
-border-radius: 20px;
-border: 1px solid #e1d5f5;
-}
-.id-input-container input {
-width: 80%;
-padding: 12px;
-border-radius: 50px;
-border: 1px solid #cbb5f0;
-background-color: #ffffff;
-color: #331a4d;
-font-size: 1rem;
-text-align: center;
-margin-bottom: 15px;
-outline: none;
-}
-.submit-btn {
-background-color: transparent;
-color: #25D366;
-padding: 12px 20px;
-border: 2px solid #25D366;
-border-radius: 50px;
-font-weight: bold;
-font-size: 1rem;
-cursor: pointer;
-width: 80%;
-transition: 0.2s ease;
-}
+.id-input-container { display: none; margin-top: 20px; background-color: rgba(245, 240, 255, 0.8); padding: 15px; border-radius: 20px; border: 1px solid #e1d5f5; }
+.id-input-container input { width: 80%; padding: 12px; border-radius: 50px; border: 1px solid #cbb5f0; background-color: #ffffff; color: #331a4d; font-size: 1rem; text-align: center; margin-bottom: 15px; outline: none; }
+.submit-btn { background-color: transparent; color: #25D366; padding: 12px 20px; border: 2px solid #25D366; border-radius: 50px; font-weight: bold; font-size: 1rem; cursor: pointer; width: 80%; transition: 0.2s ease; }
 .submit-btn:hover { background-color: #25D366; color: white; }
 footer { margin-top: 50px; padding: 20px; font-size: 0.9rem; color: #8c73a6; position: relative; z-index: 1; }
 </style>
@@ -194,15 +93,21 @@ footer { margin-top: 50px; padding: 20px; font-size: 0.9rem; color: #8c73a6; pos
 <div class="btn-container">
 <a href="https://www.youtube.com/@snap_igl" target="_blank" onclick="handleButtonClick()" class="btn">🔴 YouTube Channel</a>
 <a href="https://www.instagram.com/s_n_a_p_y_t?igsh=MWp6dnc0bHRnZzFzdA==" target="_blank" onclick="handleButtonClick()" class="btn">📸 Instagram</a>
-<button onclick="toggleGame(); handleButtonClick();" class="btn">🎮 Game</button>
+<button onclick="toggleGame(); handleButtonClick();" class="btn">🎮 Game Zone</button>
 <button onclick="toggleTournament(); handleButtonClick();" class="btn">🏆 Tournament</button>
 </div>
 <div id="gameSection" class="game-section">
-<h3>Bamboo Flappy 🎋</h3>
-<p>പച്ച മുളങ്കാടുകൾക്കിടയിലൂടെ നമ്മുടെ മഞ്ഞപ്പക്ഷിയെ സുരക്ഷിതമായി പറത്തൂ!</p>
+<h3 id="gameTitle">Select a Game</h3>
+<div class="game-menu">
+<button class="game-select-btn active" onclick="switchGame('bamboo')">Bamboo Bird</button>
+<button class="game-select-btn" onclick="switchGame('snake')">Snake</button>
+<button class="game-select-btn" onclick="switchGame('dino')">Dino Jump</button>
+<button class="game-select-btn" onclick="switchGame('ttt')">Tic-Tac-Toe</button>
+<button class="game-select-btn" onclick="switchGame('3ddodge')">3D Dodge 🚀</button>
+</div>
 <canvas id="gameCanvas" width="320" height="400"></canvas>
 <br>
-<button id="startBtn" onclick="startGame()" class="game-menu-btn">Start Game</button>
+<button id="startBtn" onclick="pressStart()" class="game-menu-btn">Start Game</button>
 </div>
 <div id="tournamentSection" class="tournament-section">
 <h3>Select Your Game</h3>
@@ -221,26 +126,21 @@ footer { margin-top: 50px; padding: 20px; font-size: 0.9rem; color: #8c73a6; pos
 </div>
 <footer>
 <p>© 2026 Designed on Mobile</p>
-</footer>
-<script>
+  </footer>
+  <script>
+let selectedGameMode = "bamboo"; 
 let selectedGame = "";
-function handleButtonClick() {
-playClickSound();
-createBallsAnimation();
-}
+function handleButtonClick() { playClickSound(); createBallsAnimation(); }
 function playClickSound() {
 let clickAudio = new Audio('https://assets.mixkit.co/active_storage/sfx/2568/2568-84.wav');
-clickAudio.volume = 0.5;
-clickAudio.play().catch(function(error) { console.log("Sound error:", error); });
+clickAudio.volume = 0.3; clickAudio.play().catch(e => {});
 }
 function createBallsAnimation() {
 let container = document.getElementById("animation-container");
 for (let i = 0; i < 5; i++) {
-let ball = document.createElement("div");
-ball.classList.add("ball");
+let ball = document.createElement("div"); ball.classList.add("ball");
 let size = Math.floor(Math.random() * 40) + 20;
-ball.style.width = size + "px";
-ball.style.height = size + "px";
+ball.style.width = size + "px"; ball.style.height = size + "px";
 ball.style.left = Math.floor(Math.random() * 100) + "vw";
 ball.style.animationDelay = (Math.random() * 0.5) + "s";
 container.appendChild(ball);
@@ -249,284 +149,195 @@ setTimeout(() => { ball.remove(); }, 4000);
 }
 function toggleGame() {
 let gameSec = document.getElementById("gameSection");
-let tourSec = document.getElementById("tournamentSection");
-tourSec.style.display = "none";
+document.getElementById("tournamentSection").style.display = "none";
 if (gameSec.style.display === "block") {
-gameSec.style.display = "none";
-resetGameEngine();
+gameSec.style.display = "none"; resetGameEngine();
 } else {
-gameSec.style.display = "block";
-gameSec.scrollIntoView({ behavior: 'smooth' });
-initGameCanvas();
+gameSec.style.display = "block"; gameSec.scrollIntoView({ behavior: 'smooth' }); initCurrentGame();
 }
 }
 function toggleTournament() {
-document.getElementById("gameSection").style.display = "none";
-resetGameEngine();
+document.getElementById("gameSection").style.display = "none"; resetGameEngine();
 let section = document.getElementById("tournamentSection");
-if (section.style.display === "block") {
-section.style.display = "none";
-} else {
-section.style.display = "block";
-section.scrollIntoView({ behavior: 'smooth' });
+section.style.display = (section.style.display === "block") ? "none" : "block";
+if(section.style.display === "block") section.scrollIntoView({ behavior: 'smooth' });
 }
+function switchGame(mode) {
+handleButtonClick(); resetGameEngine(); selectedGameMode = mode;
+let btns = document.querySelectorAll('.game-select-btn');
+btns.forEach(b => b.classList.remove('active'));
+event.target.classList.add('active');
+initCurrentGame();
 }
 const canvas = document.getElementById("gameCanvas");
 const ctx = canvas.getContext("2d");
-let gameInterval;
-let gameRunning = false;
-let bird, pipes, score, fireworks;
-const gravity = 0.25;
-const jump = -4.5;
+let gameInterval; let gameRunning = false; let score = 0;
 const TARGET_SCORE = 15;
-function initGameCanvas() {
-drawMilitiaBackground();
-ctx.fillStyle = "#ffffff";
-ctx.font = "bold 20px Arial";
-ctx.shadowColor = "black";
-ctx.shadowBlur = 4;
-ctx.fillText("Bamboo Training", 90, 150);
-ctx.font = "bold 15px Arial";
-ctx.fillStyle = "#ffe600";
-ctx.fillText("Target Score: " + TARGET_SCORE, 110, 190);
-ctx.fillStyle = "#ffffff";
-ctx.font = "14px Arial";
-ctx.fillText("Click 'Start Game' to Fly", 85, 230);
-ctx.shadowBlur = 0; 
+let bird, pipes; 
+let snake, apple, dx, dy, nextDx, nextDy; 
+let dino, obstacles, dinoGravity, dinoJump, spawnTimer; 
+let tttGrid, tttTurn; 
+let player3D, obs3D, horizonY, roadLines, spawnTimer3D;
+function initCurrentGame() {
+ctx.clearRect(0,0,canvas.width,canvas.height);
+document.getElementById("startBtn").style.display = "inline-block";
+if (selectedGameMode === "bamboo") {
+document.getElementById("gameTitle").innerText = "Bamboo Bird 🎋"; drawMilitiaBackground();
+ctx.fillStyle = "#ffffff"; ctx.font = "bold 20px Arial"; ctx.fillText("Bamboo Training", 85, 150);
+} else if (selectedGameMode === "snake") {
+document.getElementById("gameTitle").innerText = "Snake & Apple 🍏"; ctx.fillStyle = "#111"; ctx.fillRect(0,0,canvas.width,canvas.height);
+ctx.fillStyle = "#00ff00"; ctx.font = "bold 20px Arial"; ctx.fillText("Retro Snake Game", 75, 150);
+} else if (selectedGameMode === "dino") {
+document.getElementById("gameTitle").innerText = "Dino Jump 🌵"; ctx.fillStyle = "#f7f7f7"; ctx.fillRect(0,0,canvas.width,canvas.height);
+ctx.fillStyle = "#535353"; ctx.font = "bold 20px Arial"; ctx.fillText("T-Rex Dino Jump", 85, 150);
+} else if (selectedGameMode === "ttt") {
+document.getElementById("gameTitle").innerText = "Tic-Tac-Toe ⭕❌"; document.getElementById("startBtn").style.display = "none"; initTTT();
+} else if (selectedGameMode === "3ddodge") {
+document.getElementById("gameTitle").innerText = "3D Space Dodge 🚀"; draw3DSceneBackground();
+ctx.fillStyle = "#00ffcc"; ctx.font = "bold 20px Arial"; ctx.fillText("Pseudo 3D Highway", 65, 130);
 }
-function drawMilitiaBackground() {
-let gradient = ctx.createLinearGradient(0, 0, 0, canvas.height);
-gradient.addColorStop(0, "#4A752C"); 
-gradient.addColorStop(0.4, "#83A35D"); 
-gradient.addColorStop(0.8, "#556B2F"); 
-gradient.addColorStop(1, "#2E3B1E"); 
-ctx.fillStyle = gradient;
-ctx.fillRect(0, 0, canvas.width, canvas.height);
-ctx.fillStyle = "#3d4d24";
-ctx.beginPath();
-ctx.arc(40, 80, 25, 0, Math.PI*2);
-ctx.arc(80, 70, 35, 0, Math.PI*2);
-ctx.arc(130, 85, 20, 0, Math.PI*2);
-ctx.arc(220, 60, 40, 0, Math.PI*2);
-ctx.arc(280, 75, 30, 0, Math.PI*2);
-ctx.fill();
-ctx.fillStyle = "#8B5A2B"; 
-ctx.fillRect(0, canvas.height - 25, canvas.width, 25);
-ctx.fillStyle = "#556B2F"; 
-ctx.fillRect(0, canvas.height - 25, canvas.width, 6);
 }
-function startGame() {
+function pressStart() {
 if (gameRunning) return;
 document.getElementById("startBtn").style.display = "none";
-gameRunning = true;
-score = 0;
-bird = { x: 60, y: 150, radius: 12, velocity: 0 };
-pipes = [];
-fireworks = [];
-canvas.addEventListener("click", playerJump);
-gameInterval = setInterval(updateGame, 1000 / 60);
-}
-function playerJump() {
-if (gameRunning) bird.velocity = jump;
-}
-function resetGameEngine() {
-clearInterval(gameInterval);
-gameRunning = false;
-document.getElementById("startBtn").style.display = "inline-block";
-document.getElementById("startBtn").innerText = "Start Game";
-canvas.removeEventListener("click", playerJump);
-}
-function createFirework() {
-let x = Math.random() * canvas.width;
-let y = Math.random() * (canvas.height / 2) + 50;
-let colors = ["#ff0055", "#00ffcc", "#ffcc00", "#ff6600", "#00ff00", "#ffffff"];
-let color = colors[Math.floor(Math.random() * colors.length)];
-for (let i = 0; i < 20; i++) {
-let angle = Math.random() * Math.PI * 2;
-let speed = Math.random() * 3 + 1;
-fireworks.push({
-x: x, y: y,
-vx: Math.cos(angle) * speed,
-vy: Math.sin(angle) * speed,
-alpha: 1,
-color: color
-});
+gameRunning = true; score = 0;
+canvas.removeEventListener("click", handleCanvasClick); canvas.addEventListener("click", handleCanvasClick);
+if (selectedGameMode === "bamboo") {
+bird = { x: 60, y: 150, radius: 12, velocity: 0 }; pipes = []; gameInterval = setInterval(updateBamboo, 1000 / 60);
+} else if (selectedGameMode === "snake") {
+snake = [{x: 160, y: 200}, {x: 140, y: 200}, {x: 120, y: 200}]; dx = 20; dy = 0; nextDx = 20; nextDy = 0; spawnApple(); gameInterval = setInterval(updateSnake, 150);
+} else if (selectedGameMode === "dino") {
+dino = { x: 40, y: 320, width: 20, height: 30, vy: 0, isJumping: false }; obstacles = []; dinoGravity = 0.4; dinoJump = -8.5; spawnTimer = 0; gameInterval = setInterval(updateDino, 1000 / 60);
+} else if (selectedGameMode === "3ddodge") {
+horizonY = 150; player3D = { x: canvas.width / 2, y: 340, width: 35, height: 15 }; obs3D = []; roadLines = 0; spawnTimer3D = 0;
+gameInterval = setInterval(update3DDodge, 1000 / 60);
 }
 }
-function updateGame() {
-bird.velocity += gravity;
-bird.y += bird.velocity;
-if (bird.y + bird.radius >= canvas.height - 25 || bird.y - bird.radius <= 0) {
-gameOver();
+function handleCanvasClick(e) {
+let rect = canvas.getBoundingClientRect(); let clickX = e.clientX - rect.left; let clickY = e.clientY - rect.top;
+if (selectedGameMode === "bamboo" && gameRunning) { bird.velocity = -4.5; }
+else if (selectedGameMode === "snake" && gameRunning) {
+if (dx !== 0) { nextDx = 0; nextDy = (clickY < canvas.height/2) ? -20 : 20; } else { nextDy = 0; nextDx = (clickX < canvas.width/2) ? -20 : 20; }
+} else if (selectedGameMode === "dino" && gameRunning) { if (!dino.isJumping) { dino.vy = dinoJump; dino.isJumping = true; } }
+else if (selectedGameMode === "3ddodge" && gameRunning) {
+if (clickX < canvas.width / 2) { player3D.x = Math.max(50, player3D.x - 35); } else { player3D.x = Math.min(canvas.width - 50, player3D.x + 35); }
+} else if (selectedGameMode === "ttt") {
+let col = Math.floor(clickX / (canvas.width / 3)); let row = Math.floor(clickY / (canvas.height / 3));
+if (tttGrid[row][col] === "") {
+tttGrid[row][col] = tttTurn;
+if (checkTTTWin(row, col)) { drawTTTGrid(); alert(tttTurn + " Wins! 🎉"); initTTT(); }
+else if (tttGrid.flat().every(cell => cell !== "")) { drawTTTGrid(); alert("It's a Draw! 🤝"); initTTT(); }
+else { tttTurn = (tttTurn === "X") ? "O" : "X"; drawTTTGrid(); }
 }
+}
+}
+function resetGameEngine() { clearInterval(gameInterval); gameRunning = false; document.getElementById("startBtn").innerText = "Start Game"; canvas.removeEventListener("click", handleCanvasClick); }
+function drawMilitiaBackground() {
+let gradient = ctx.createLinearGradient(0, 0, 0, canvas.height); gradient.addColorStop(0, "#4A752C"); gradient.addColorStop(0.4, "#83A35D"); gradient.addColorStop(0.8, "#556B2F"); gradient.addColorStop(1, "#2E3B1E");
+ctx.fillStyle = gradient; ctx.fillRect(0, 0, canvas.width, canvas.height); ctx.fillStyle = "#3d4d24"; ctx.beginPath(); ctx.arc(40, 80, 25, 0, Math.PI*2); ctx.arc(220, 60, 40, 0, Math.PI*2); ctx.fill(); ctx.fillStyle = "#8B5A2B"; ctx.fillRect(0, canvas.height - 25, canvas.width, 25);
+}
+function updateBamboo() {
+bird.velocity += 0.25; bird.y += bird.velocity; if (bird.y + bird.radius >= canvas.height - 25 || bird.y - bird.radius <= 0) return gameOver();
 if (pipes.length === 0 || pipes[pipes.length - 1].x < canvas.width - 150) {
-let gap = 110;
-let minHeight = 40;
-let maxHeight = canvas.height - gap - minHeight - 25;
-let height = Math.floor(Math.random() * (maxHeight - minHeight + 1)) + minHeight;
-pipes.push({
-x: canvas.width,
-topHeight: height,
-bottomY: height + gap,
-width: 44,
-passed: false
-});
+let gap = 110, minH = 40, maxH = canvas.height - gap - minH - 25; let height = Math.floor(Math.random() * (maxH - minH + 1)) + minH;
+pipes.push({ x: canvas.width, topHeight: height, bottomY: height + gap, width: 44, passed: false });
 }
 for (let i = pipes.length - 1; i >= 0; i--) {
 pipes[i].x -= 2;
-if (bird.x + bird.radius - 3 > pipes[i].x && bird.x - bird.radius + 3 < pipes[i].x + pipes[i].width) {
-if (bird.y - bird.radius + 3 < pipes[i].topHeight || bird.y + bird.radius - 3 > pipes[i].bottomY) {
-gameOver();
-}
-}
-if (!pipes[i].passed && pipes[i].x + pipes[i].width < bird.x) {
-score++;
-pipes[i].passed = true;
-if (score >= TARGET_SCORE) {
-gameWin();
-return;
-}
-}
-if (pipes[i].x + pipes[i].width < 0) {
-pipes.splice(i, 1);
-}
+if (bird.x + bird.radius - 3 > pipes[i].x && bird.x - bird.radius + 3 < pipes[i].x + pipes[i].width) { if (bird.y - bird.radius + 3 < pipes[i].topHeight || bird.y + bird.radius - 3 > pipes[i].bottomY) return gameOver(); }
+if (!pipes[i].passed && pipes[i].x + pipes[i].width < bird.x) { score++; pipes[i].passed = true; if (score >= TARGET_SCORE) return gameWin(); }
+if (pipes[i].x + pipes[i].width < 0) pipes.splice(i, 1);
 }
 drawMilitiaBackground();
-for (let p of pipes) {
-ctx.fillStyle = "#2D5A27"; 
-ctx.fillRect(p.x, 0, p.width, p.topHeight);
-ctx.fillRect(p.x, p.bottomY, p.width, canvas.height - p.bottomY - 25);
-ctx.fillStyle = "#3E7537";
-ctx.fillRect(p.x + 5, 0, p.width - 10, p.topHeight);
-ctx.fillRect(p.x + 5, p.bottomY, p.width - 10, canvas.height - p.bottomY - 25);
-ctx.fillStyle = "#1E3D1A";
-ctx.fillRect(p.x, p.topHeight - 15, p.width, 10);
-ctx.fillRect(p.x, p.bottomY + 5, p.width, 10);
+for (let p of pipes) { ctx.fillStyle = "#2D5A27"; ctx.fillRect(p.x, 0, p.width, p.topHeight); ctx.fillRect(p.x, p.bottomY, p.width, canvas.height - p.bottomY - 25); ctx.fillStyle = "#3E7537"; ctx.fillRect(p.x + 5, 0, p.width - 10, p.topHeight); ctx.fillRect(p.x + 5, p.bottomY, p.width - 10, canvas.height - p.bottomY - 25); }
+ctx.save(); ctx.translate(bird.x, bird.y); ctx.beginPath(); ctx.arc(0, 0, bird.radius, 0, Math.PI * 2); ctx.fillStyle = "#ffe600"; ctx.fill(); ctx.fillStyle = "#fff"; ctx.beginPath(); ctx.arc(4, -4, 3, 0, Math.PI*2); ctx.fill(); ctx.fillStyle = "#000"; ctx.beginPath(); ctx.arc(5, -4, 1.2, 0, Math.PI*2); ctx.fill(); ctx.fillStyle = "#ff6600"; ctx.beginPath(); ctx.moveTo(10, -2); ctx.lineTo(16, 1); ctx.lineTo(9, 4); ctx.fill(); ctx.restore();
+ctx.fillStyle = "#ffffff"; ctx.font = "bold 20px Arial"; ctx.fillText("Score: " + score, 15, 35);
 }
-ctx.save();
-ctx.translate(bird.x, bird.y);
-ctx.beginPath();
-ctx.arc(0, 0, bird.radius, 0, Math.PI * 2);
-ctx.fillStyle = "#ffe600"; 
-ctx.fill();
-ctx.strokeStyle = "#333";
-ctx.lineWidth = 1.5;
-ctx.stroke();
-ctx.closePath();
-ctx.beginPath();
-ctx.arc(4, -4, 3, 0, Math.PI * 2);
-ctx.fillStyle = "#ffffff";
-ctx.fill();
-ctx.closePath();
-ctx.beginPath();
-ctx.arc(5, -4, 1.2, 0, Math.PI * 2);
-ctx.fillStyle = "#000000";
-ctx.fill();
-ctx.closePath();
-ctx.beginPath();
-ctx.moveTo(10, -2);
-ctx.lineTo(16, 1);
-ctx.lineTo(9, 4);
-ctx.fillStyle = "#ff6600";
-ctx.fill();
-ctx.closePath();
-ctx.beginPath();
-ctx.ellipse(-4, 2, 5, 3, Math.PI / 6, 0, Math.PI * 2);
-ctx.fillStyle = "#ffffff";
-ctx.fill();
-ctx.stroke();
-ctx.closePath();
-ctx.restore();
-ctx.fillStyle = "#ffffff";
-ctx.font = "bold 22px Arial";
-ctx.shadowColor = "black";
-ctx.shadowBlur = 4;
-ctx.fillText("Score: " + score + " / " + TARGET_SCORE, 15, 35);
-ctx.shadowBlur = 0;
+function spawnApple() { apple = { x: Math.floor(Math.random() * (canvas.width/20)) * 20, y: Math.floor(Math.random() * (canvas.height/20)) * 20 }; }
+function updateSnake() {
+dx = nextDx; dy = nextDy; let head = {x: snake[0].x + dx, y: snake[0].y + dy}; if (head.x < 0 || head.x >= canvas.width || head.y < 0 || head.y >= canvas.height) return gameOver();
+for (let cell of snake) { if (head.x === cell.x && head.y === cell.y) return gameOver(); }
+snake.unshift(head); if (head.x === apple.x && head.y === apple.y) { score++; spawnApple(); } else { snake.pop(); }
+ctx.fillStyle = "#111"; ctx.fillRect(0,0,canvas.width,canvas.height); ctx.fillStyle = "#ff0033"; ctx.fillRect(apple.x+2, apple.y+2, 16, 16);
+ctx.fillStyle = "#00ff00"; snake.forEach((cell, idx) => { ctx.fillRect(cell.x+1, cell.y+1, 18, 18); if(idx===0){ ctx.fillStyle="#00cc00"; ctx.fillRect(cell.x+5, cell.y+5, 4, 4); } });
+ctx.fillStyle = "#ffffff"; ctx.font = "bold 20px Arial"; ctx.fillText("Score: " + score, 15, 35);
 }
-function gameWin() {
-clearInterval(gameInterval);
-gameRunning = false;
-let winInterval = setInterval(() => {
-ctx.clearRect(0, 0, canvas.width, canvas.height);
-ctx.fillStyle = "rgba(46, 59, 30, 0.95)";
-ctx.fillRect(0, 0, canvas.width, canvas.height);
-if (Math.random() < 0.3) createFirework();
-for (let i = fireworks.length - 1; i >= 0; i--) {
-let f = fireworks[i];
-f.x += f.vx;
-f.y += f.vy;
-f.alpha -= 0.015;
-if (f.alpha <= 0) {
-fireworks.splice(i, 1);
-} else {
-ctx.save();
-ctx.globalAlpha = f.alpha;
-ctx.beginPath();
-ctx.arc(f.x, f.y, 2.5, 0, Math.PI * 2);
-ctx.fillStyle = f.color;
-ctx.fill();
-ctx.restore();
+function updateDino() {
+dino.vy += dinoGravity; dino.y += dino.vy; if (dino.y >= 320) { dino.y = 320; dino.vy = 0; dino.isJumping = false; }
+spawnTimer++; if (spawnTimer > 100) { if(Math.random() > 0.5) { obstacles.push({x: canvas.width, width: 15, height: 25 + Math.random()*15}); spawnTimer = 0; } }
+for (let i = obstacles.length - 1; i >= 0; i--) { obstacles[i].x -= 3.5; if (dino.x < obstacles[i].x + obstacles[i].width && dino.x + dino.width > obstacles[i].x && dino.y < 320 + obstacles[i].height && dino.y + dino.height > 350 - obstacles[i].height) { return gameOver(); } if (obstacles[i].x + obstacles[i].width < 0) { obstacles.splice(i, 1); score++; } }
+ctx.fillStyle = "#f7f7f7"; ctx.fillRect(0, 0, canvas.width, canvas.height); ctx.fillStyle = "#535353"; ctx.fillRect(dino.x, dino.y, dino.width, dino.height);
+ctx.fillStyle = "#556B2F"; for (let obs of obstacles) { ctx.fillRect(obs.x, 350 - obs.height, obs.width, obs.height); }
+ctx.fillStyle = "#999"; ctx.fillRect(0, 350, canvas.width, 2); ctx.fillStyle = "#333"; ctx.font = "bold 20px Arial"; ctx.fillText("Score: " + score, 15, 35);
 }
+function initTTT() { tttGrid = [["","",""],["","",""],["","",""]]; tttTurn = "X"; canvas.removeEventListener("click", handleCanvasClick); canvas.addEventListener("click", handleCanvasClick); drawTTTGrid(); }
+function drawTTTGrid() {
+ctx.fillStyle = "#fff"; ctx.fillRect(0,0,canvas.width,canvas.height); ctx.strokeStyle = "#6f42c1"; ctx.lineWidth = 4;
+for(let i=1; i<3; i++) { let x = i * (canvas.width / 3); ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x, canvas.height); ctx.stroke(); let y = i * (canvas.height / 3); ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(canvas.width, y); ctx.stroke(); }
+ctx.font = "bold 40px Arial"; ctx.textAlign = "center"; ctx.textBaseline = "middle";
+for(let r=0; r<3; r++) { for(let c=0; c<3; c++) { if(tttGrid[r][c] === "X") { ctx.fillStyle = "#ff4b2b"; ctx.fillText("X", c*(canvas.width/3) + canvas.width/6, r*(canvas.height/3) + canvas.height/6); } else if(tttGrid[r][c] === "O") { ctx.fillStyle = "#00ffcc"; ctx.fillText("O", c*(canvas.width/3) + canvas.width/6, r*(canvas.height/3) + canvas.height/6); } } }
+ctx.textAlign = "left"; ctx.textBaseline = "alphabetic";
 }
-ctx.fillStyle = "#ffe600";
-ctx.font = "bold 32px Arial";
-ctx.shadowColor = "black";
-ctx.shadowBlur = 4;
-ctx.fillText("MISSION PASSED! ", 22, 150);
-ctx.fillStyle = "#ffffff";
-ctx.font = "bold 18px Arial";
-ctx.fillText("Rank: Commander 🎖️", 70, 200);
-ctx.fillStyle = "#00ffcc";
-ctx.font = "bold 15px Arial";
-ctx.fillText("Score Level Complete!", 65, 240);
-ctx.shadowBlur = 0;
-if (document.getElementById("gameSection").style.display === "none") {
-clearInterval(winInterval);
+function checkTTTWin(r, c) {
+if(tttGrid[r].every(cell => cell === tttTurn)) return true; if([0,1,2].every(row => tttGrid[row][c] === tttTurn)) return true;
+if(r === c && [0,1,2].every(i => tttGrid[i][i] === tttTurn)) return true; if(r + c === 2 && [0,1,2].every(i => tttGrid[i][2-i] === tttTurn)) return true; return false;
 }
-}, 1000 / 40);
-document.getElementById("startBtn").style.display = "inline-block";
-document.getElementById("startBtn").innerText = "Play Again ";
-document.getElementById("startBtn").onclick = function() {
-clearInterval(winInterval);
-startGame();
-};
+function draw3DSceneBackground() {
+ctx.fillStyle = "#0c001f"; ctx.fillRect(0, 0, canvas.width, horizonY);
+ctx.fillStyle = "#ff00aa"; for(let i=0; i<15; i++) { ctx.fillRect(Math.random()*canvas.width, Math.random()*horizonY, 2, 2); }
+ctx.fillStyle = "#1b112c"; ctx.fillRect(0, horizonY, canvas.width, canvas.height - horizonY);
+ctx.fillStyle = "#3a225d"; ctx.beginPath(); ctx.moveTo(canvas.width/2, horizonY); ctx.lineTo(0, canvas.height); ctx.lineTo(canvas.width, canvas.height); ctx.closePath(); ctx.fill();
+}
+function update3DDodge() {
+roadLines = (roadLines + 4) % 40; spawnTimer3D++;
+if (spawnTimer3D > 50) {
+let targetX = 50 + Math.floor(Math.random() * 7) * 35;
+obs3D.push({ targetX: targetX, currentX: canvas.width/2, y: horizonY, scale: 0.1, speed: 0.02 });
+spawnTimer3D = 0;
+}
+for (let i = obs3D.length - 1; i >= 0; i--) {
+let o = obs3D[i]; o.y += (canvas.height - horizonY) * o.speed; o.scale += 0.018;
+let progress = (o.y - horizonY) / (canvas.height - horizonY);
+o.currentX = (canvas.width/2) + (o.targetX - canvas.width/2) * progress;
+let pLeft = player3D.x - player3D.width/2; let pRight = player3D.x + player3D.width/2;
+let oWidth = 30 * o.scale; let oLeft = o.currentX - oWidth/2; let oRight = o.currentX + oWidth/2;
+if (o.y > 320 && o.y < 355) { if (oRight > pLeft && oLeft < pRight) return gameOver(); }
+if (o.y > canvas.height) { obs3D.splice(i, 1); score++; }
+}
+draw3DSceneBackground();
+ctx.strokeStyle = "#ff00ea"; ctx.lineWidth = 2;
+for (let offset = roadLines; offset < canvas.height - horizonY; offset += 40) {
+let lineY = horizonY + offset; let progress = offset / (canvas.height - horizonY);
+let lineWidth = canvas.width * progress; let startX = (canvas.width/2) - lineWidth/2;
+ctx.beginPath(); ctx.moveTo(startX, lineY); ctx.lineTo(startX + lineWidth, lineY); ctx.stroke();
+}
+for (let o of obs3D) {
+let oWidth = 30 * o.scale; let oHeight = 25 * o.scale;
+ctx.fillStyle = "#00ffcc"; ctx.shadowColor = "#00ffcc"; ctx.shadowBlur = 8;
+ctx.fillRect(o.currentX - oWidth/2, o.y - oHeight, oWidth, oHeight); ctx.shadowBlur = 0;
+}
+ctx.fillStyle = "#ff0077"; ctx.shadowColor = "#ff0077"; ctx.shadowBlur = 10;
+ctx.fillRect(player3D.x - player3D.width/2, player3D.y, player3D.width, player3D.height);
+ctx.fillStyle = "#ffffff"; ctx.fillRect(player3D.x - player3D.width/3, player3D.y + 2, 6, 4); ctx.fillRect(player3D.x + player3D.width/3 - 6, player3D.y + 2, 6, 4);
+ctx.shadowBlur = 0; ctx.fillStyle = "#ffffff"; ctx.font = "bold 20px Arial"; ctx.fillText("Score: " + score, 15, 35);
 }
 function gameOver() {
-clearInterval(gameInterval);
-gameRunning = false;
-ctx.fillStyle = "rgba(0, 0, 0, 0.75)";
-ctx.fillRect(0, 0, canvas.width, canvas.height);
-ctx.fillStyle = "#ff4b2b";
-ctx.font = "bold 32px Arial";
-ctx.shadowColor = "black";
-ctx.shadowBlur = 4;
-ctx.fillText("WASTED 💀", 75, 150);
-ctx.fillStyle = "#ffffff";
-ctx.font = "bold 18px Arial";
-ctx.fillText("Your Score: " + score, 110, 195);
-ctx.shadowBlur = 0;
-document.getElementById("startBtn").style.display = "inline-block";
-document.getElementById("startBtn").innerText = "Respawn 🔄";
-document.getElementById("startBtn").onclick = startGame;
+resetGameEngine(); ctx.fillStyle = "rgba(0, 0, 0, 0.8)"; ctx.fillRect(0, 0, canvas.width, canvas.height);
+ctx.fillStyle = "#ff4b2b"; ctx.font = "bold 32px Arial"; ctx.fillText("GAME OVER 💀", 50, 160);
+ctx.fillStyle = "#ffffff"; ctx.font = "bold 18px Arial"; ctx.fillText("Your Score: " + score, 105, 210);
+document.getElementById("startBtn").style.display = "inline-block"; document.getElementById("startBtn").innerText = "Play Again 🔄";
 }
-function showIdInput(gameName) {
-selectedGame = gameName;
-document.getElementById("selectedGameTitle").innerText = "Enter your " + gameName + " ID";
-document.getElementById("idInputContainer").style.display = "block";
-document.getElementById("gameIdInput").value = "";
+function gameWin() {
+resetGameEngine(); ctx.fillStyle = "rgba(0, 0, 0, 0.8)"; ctx.fillRect(0, 0, canvas.width, canvas.height);
+ctx.fillStyle = "#ffe600"; ctx.font = "bold 30px Arial"; ctx.fillText("VICTORY! 🏆", 75, 160);
+document.getElementById("startBtn").style.display = "inline-block"; document.getElementById("startBtn").innerText = "Play Again 🔄";
 }
+function showIdInput(gameName) { selectedGame = gameName; document.getElementById("selectedGameTitle").innerText = "Enter your " + gameName + " ID"; document.getElementById("idInputContainer").style.display = "block"; document.getElementById("gameIdInput").value = ""; }
 function sendToWhatsApp() {
-let gameId = document.getElementById("gameIdInput").value.trim();
-if (gameId === "") {
-alert("ദയവായി നിങ്ങളുടെ ഗെയിം ഐഡി ടൈപ്പ് ചെയ്യൂ!");
-return;
-}
-let whatsappNumber = "918138098290";
-let message = "ഹലോ അതുൽ, ഞാൻ ടൂർണമെന്റിൽ രജിസ്റ്റർ ചെയ്യാൻ താല്പര്യപ്പെടുന്നു.\n\n Game: " + selectedGame + "\n Player ID: " + gameId;
-let whatsappUrl = "https://api.whatsapp.com/send?phone=" + whatsappNumber + "&text=" + encodeURIComponent(message);
-window.location.href = whatsappUrl;
+let gameId = document.getElementById("gameIdInput").value.trim(); if (gameId === "") { alert("ദയവായി നിങ്ങളുടെ ഗെയിം ഐഡി ടൈപ്പ് ചെയ്യൂ!"); return; }
+let whatsappNumber = "918138098290"; let message = "ഹലോ അതുൽ, ഞാൻ ടൂർണമെന്റിൽ രജിസ്റ്റർ ചെയ്യാൻ താല്പര്യപ്പെടുന്നു.\n\n Game: " + selectedGame + "\n Player ID: " + gameId;
+window.location.href = "https://api.whatsapp.com/send?phone=" + whatsappNumber + "&text=" + encodeURIComponent(message);
 }
 </script>
 </body>
-  </html>
+</html>
