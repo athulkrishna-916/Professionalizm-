@@ -1,1 +1,522 @@
+<!DOCTYPE html>
+<html lang="ml">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>My Personal Website</title>
+<style>
+body {
+font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+margin: 0;
+padding: 0;
+background-color: #f5f0ff;
+color: #331a4d;
+text-align: center;
+overflow-x: hidden;
+position: relative;
+min-height: 100vh;
+}
+#animation-container {
+position: fixed;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+z-index: -1;
+pointer-events: none;
+}
+.ball {
+position: absolute;
+border-radius: 50%;
+background: radial-gradient(circle, rgba(169,81,237,0.6) 0%, rgba(111,66,193,0.2) 100%);
+animation: floatUp 4s linear forwards;
+}
+@keyframes floatUp {
+0% { transform: translateY(100vh) scale(0) rotate(0deg); opacity: 0; }
+10% { opacity: 0.8; }
+90% { opacity: 0.8; }
+100% { transform: translateY(-10vh) scale(1.5) rotate(360deg); opacity: 0; }
+}
+header {
+background: linear-gradient(135deg, #6f42c1, #a951ed);
+padding: 40px 20px;
+color: #ffffff;
+box-shadow: 0 4px 15px rgba(111, 66, 193, 0.3);
+}
+header h1 { margin: 0; font-size: 2.5rem; }
+header p { font-size: 1.2rem; opacity: 0.9; }
+.container {
+padding: 30px 20px;
+max-width: 600px;
+margin: auto;
+position: relative;
+z-index: 1;
+}
+.about-section {
+background-color: rgba(255, 255, 255, 0.9);
+padding: 20px;
+border-radius: 25px;
+margin-bottom: 25px;
+box-shadow: 0 4px 15px rgba(111, 66, 193, 0.1);
+border: 1px solid #e1d5f5;
+backdrop-filter: blur(5px);
+}
+.btn-container {
+display: flex;
+flex-direction: column;
+gap: 15px;
+}
+.btn {
+display: block;
+background-color: transparent;
+color: #6f42c1;
+padding: 15px;
+text-decoration: none;
+font-size: 1.1rem;
+font-weight: bold;
+border-radius: 50px;
+border: 2px solid #6f42c1;
+transition: 0.3s ease;
+cursor: pointer;
+width: 100%;
+box-sizing: border-box;
+font-family: inherit;
+}
+.btn:hover {
+background-color: #6f42c1;
+color: white;
+transform: scale(1.02);
+box-shadow: 0 4px 12px rgba(111, 66, 193, 0.2);
+}
+.game-section {
+display: none;
+background-color: rgba(255, 255, 255, 0.95);
+padding: 20px;
+border-radius: 25px;
+margin-top: 25px;
+box-shadow: 0 4px 20px rgba(111, 66, 193, 0.2);
+border: 1px solid #e1d5f5;
+backdrop-filter: blur(5px);
+animation: fadeIn 0.5s ease-in-out;
+}
+#gameCanvas {
+background-color: #70c5ce;
+border-radius: 15px;
+display: block;
+margin: 15px auto;
+max-width: 100%;
+border: 3px solid #6f42c1;
+cursor: pointer;
+}
+.game-menu-btn {
+background-color: #6f42c1;
+color: white;
+padding: 12px 30px;
+border: none;
+border-radius: 50px;
+font-size: 1.1rem;
+font-weight: bold;
+cursor: pointer;
+transition: 0.2s;
+box-shadow: 0 4px 10px rgba(111, 66, 193, 0.3);
+}
+.game-menu-btn:hover { background-color: #59339e; }
+.tournament-section {
+display: none;
+background-color: rgba(255, 255, 255, 0.9);
+padding: 25px 20px;
+border-radius: 25px;
+margin-top: 25px;
+box-shadow: 0 4px 20px rgba(111, 66, 193, 0.15);
+border: 1px solid #e1d5f5;
+backdrop-filter: blur(5px);
+animation: fadeIn 0.5s ease-in-out;
+}
+.game-options { display: flex; gap: 15px; justify-content: center; margin-top: 15px; }
+.game-btn {
+background-color: transparent;
+color: #a951ed;
+padding: 12px 25px;
+border-radius: 50px;
+border: 2px solid #a951ed;
+font-weight: bold;
+cursor: pointer;
+transition: 0.2s ease;
+}
+.game-btn:hover { background-color: #a951ed; color: white; }
+.id-input-container {
+display: none;
+margin-top: 20px;
+background-color: rgba(245, 240, 255, 0.8);
+padding: 15px;
+border-radius: 20px;
+border: 1px solid #e1d5f5;
+}
+.id-input-container input {
+width: 80%;
+padding: 12px;
+border-radius: 50px;
+border: 1px solid #cbb5f0;
+background-color: #ffffff;
+color: #331a4d;
+font-size: 1rem;
+text-align: center;
+margin-bottom: 15px;
+outline: none;
+}
+.submit-btn {
+background-color: transparent;
+color: #25D366;
+padding: 12px 20px;
+border: 2px solid #25D366;
+border-radius: 50px;
+font-weight: bold;
+font-size: 1rem;
+cursor: pointer;
+width: 80%;
+transition: 0.2s ease;
+}
+.submit-btn:hover { background-color: #25D366; color: white; }
+footer { margin-top: 50px; padding: 20px; font-size: 0.9rem; color: #8c73a6; position: relative; z-index: 1; }
+</style>
+</head>
+<body>
+<div id="animation-container"></div>
+<header>
+<h1>Welcome To My World</h1>
+<p>Gaming | Content Creation | Tech</p>
+</header>
+<div class="container">
+<div class="about-section">
+<h2>ഹലോ, സ്വാഗതം!</h2>
+<p>HLO NJAN ORU CONTENT CREATOR AAHN NJAN ORU TOURNAMENT THUDENGAN AALOGIKUNNU ATHINE THUDENRNN THAZHEYULLA TOURNAMENT OPTION CLICK CHEYUKA  </p>
+</div>
+<div class="btn-container">
+<a href="[https://www.youtube.com/@snap_igl](https://www.youtube.com/@snap_igl)" target="_blank" onclick="handleButtonClick()" class="btn">🔴 YouTube Channel</a>
+<a href="[https://www.instagram.com/s_n_a_p_y_t?igsh=MWp6dnc0bHRnZzFzdA==](https://www.instagram.com/s_n_a_p_y_t?igsh=MWp6dnc0bHRnZzFzdA==)" target="_blank" onclick="handleButtonClick()" class="btn">📸 Instagram</a>
+<button onclick="toggleGame(); handleButtonClick();" class="btn">🎮 Game</button>
+<button onclick="toggleTournament(); handleButtonClick();" class="btn">🏆 Tournament</button>
+</div>
+<div id="gameSection" class="game-section">
+<h3>Flappy Bird 🐦</h3>
+<p>സ്ക്രീനിൽ ടാപ്പ് ചെയ്ത് പക്ഷിയെ പൈപ്പുകളിൽ മുട്ടാതെ രക്ഷിക്കൂ!</p>
+<canvas id="gameCanvas" width="320" height="400"></canvas>
 
+
+<button id="startBtn" onclick="startGame()" class="game-menu-btn">Start Game</button>
+</div>
+<div id="tournamentSection" class="tournament-section">
+<h3>Select Your Game</h3>
+<p>ടൂർണമെന്റിൽ പങ്കെടുക്കാൻ ഗെയിം തിരഞ്ഞെടുക്കുക:</p>
+<div class="game-options">
+<div class="game-btn" onclick="showIdInput('BGMI'); handleButtonClick();">PUBG / BGMI</div>
+<div class="game-btn" onclick="showIdInput('Free Fire'); handleButtonClick();">Free Fire</div>
+</div>
+<div id="idInputContainer" class="id-input-container">
+<h4 id="selectedGameTitle">Enter Game ID</h4>
+<input type="text" id="gameIdInput" placeholder="Enter your Character ID here...">
+
+
+<button onclick="sendToWhatsApp(); handleButtonClick();" class="submit-btn">Send ID via WhatsApp 💬</button>
+</div>
+</div>
+</div>
+<footer>
+<p>© 2026 Designed on Mobile</p>
+</footer>
+<script>
+let selectedGame = "";
+function handleButtonClick() {
+playClickSound();
+createBallsAnimation();
+}
+function playClickSound() {
+let clickAudio = new Audio('https://assets.mixkit.co/active_storage/sfx/2568/2568-84.wav');
+clickAudio.volume = 0.5;
+clickAudio.play().catch(function(error) { console.log("Sound error:", error); });
+}
+function createBallsAnimation() {
+let container = document.getElementById("animation-container");
+for (let i = 0; i < 5; i++) {
+let ball = document.createElement("div");
+ball.classList.add("ball");
+let size = Math.floor(Math.random() * 40) + 20;
+ball.style.width = size + "px";
+ball.style.height = size + "px";
+ball.style.left = Math.floor(Math.random() * 100) + "vw";
+ball.style.animationDelay = (Math.random() * 0.5) + "s";
+container.appendChild(ball);
+setTimeout(() => { ball.remove(); }, 4000);
+}
+}
+function toggleGame() {
+let gameSec = document.getElementById("gameSection");
+let tourSec = document.getElementById("tournamentSection");
+tourSec.style.display = "none";
+if (gameSec.style.display === "block") {
+gameSec.style.display = "none";
+resetGameEngine();
+} else {
+gameSec.style.display = "block";
+gameSec.scrollIntoView({ behavior: 'smooth' });
+initGameCanvas();
+}
+}
+function toggleTournament() {
+document.getElementById("gameSection").style.display = "none";
+resetGameEngine();
+let section = document.getElementById("tournamentSection");
+if (section.style.display === "block") {
+section.style.display = "none";
+} else {
+section.style.display = "block";
+section.scrollIntoView({ behavior: 'smooth' });
+}
+}
+const canvas = document.getElementById("gameCanvas");
+const ctx = canvas.getContext("2d");
+let gameInterval;
+let gameRunning = false;
+let bird, pipes, score, fireworks;
+const gravity = 0.25;
+const jump = -4.5;
+const TARGET_SCORE = 15;
+function initGameCanvas() {
+ctx.clearRect(0, 0, canvas.width, canvas.height);
+ctx.fillStyle = "#ffffff";
+ctx.font = "bold 20px Arial";
+ctx.fillText("Ready to Play?", 95, 150);
+ctx.font = "bold 15px Arial";
+ctx.fillStyle = "#ffe600";
+ctx.fillText("Target Score to Win: " + TARGET_SCORE, 75, 190);
+ctx.fillStyle = "#ffffff";
+ctx.font = "14px Arial";
+ctx.fillText("Click 'Start Game' below", 85, 230);
+}
+function startGame() {
+if (gameRunning) return;
+document.getElementById("startBtn").style.display = "none";
+gameRunning = true;
+score = 0;
+bird = { x: 60, y: 150, radius: 12, velocity: 0 };
+pipes = [];
+fireworks = [];
+canvas.addEventListener("click", playerJump);
+gameInterval = setInterval(updateGame, 1000 / 60);
+}
+function playerJump() {
+if (gameRunning) bird.velocity = jump;
+}
+function resetGameEngine() {
+clearInterval(gameInterval);
+gameRunning = false;
+document.getElementById("startBtn").style.display = "inline-block";
+document.getElementById("startBtn").innerText = "Start Game";
+canvas.removeEventListener("click", playerJump);
+}
+function createFirework() {
+let x = Math.random() * canvas.width;
+let y = Math.random() * (canvas.height / 2) + 50;
+let colors = ["#ff0055", "#00ffcc", "#ffcc00", "#ff6600", "#00ff00", "#ffffff"];
+let color = colors[Math.floor(Math.random() * colors.length)];
+for (let i = 0; i < 20; i++) {
+let angle = Math.random() * Math.PI * 2;
+let speed = Math.random() * 3 + 1;
+fireworks.push({
+x: x, y: y,
+vx: Math.cos(angle) * speed,
+vy: Math.sin(angle) * speed,
+alpha: 1,
+color: color
+});
+}
+}
+function updateGame() {
+bird.velocity += gravity;
+bird.y += bird.velocity;
+if (bird.y + bird.radius >= canvas.height || bird.y - bird.radius <= 0) {
+gameOver();
+}
+if (pipes.length === 0 || pipes[pipes.length - 1].x < canvas.width - 150) {
+let gap = 110;
+let minHeight = 40;
+let maxHeight = canvas.height - gap - minHeight;
+let height = Math.floor(Math.random() * (maxHeight - minHeight + 1)) + minHeight;
+pipes.push({
+x: canvas.width,
+topHeight: height,
+bottomY: height + gap,
+width: 44,
+passed: false
+});
+}
+for (let i = pipes.length - 1; i >= 0; i--) {
+pipes[i].x -= 2;
+if (bird.x + bird.radius - 3 > pipes[i].x && bird.x - bird.radius + 3 < pipes[i].x + pipes[i].width) {
+if (bird.y - bird.radius + 3 < pipes[i].topHeight || bird.y + bird.radius - 3 > pipes[i].bottomY) {
+gameOver();
+}
+}
+if (!pipes[i].passed && pipes[i].x + pipes[i].width < bird.x) {
+score++;
+pipes[i].passed = true;
+if (score >= TARGET_SCORE) {
+gameWin();
+return;
+}
+}
+if (pipes[i].x + pipes[i].width < 0) {
+pipes.splice(i, 1);
+}
+}
+ctx.clearRect(0, 0, canvas.width, canvas.height);
+ctx.fillStyle = "#a951ed";
+for (let p of pipes) {
+ctx.fillRect(p.x, 0, p.width, p.topHeight);
+ctx.fillRect(p.x, p.bottomY, p.width, canvas.height - p.bottomY);
+}
+ctx.save();
+ctx.translate(bird.x, bird.y);
+ctx.beginPath();
+ctx.arc(0, 0, bird.radius, 0, Math.PI * 2);
+ctx.fillStyle = "#ffe600";
+ctx.fill();
+ctx.strokeStyle = "#333";
+ctx.lineWidth = 1.5;
+ctx.stroke();
+ctx.closePath();
+ctx.beginPath();
+ctx.arc(4, -4, 3, 0, Math.PI * 2);
+ctx.fillStyle = "#ffffff";
+ctx.fill();
+ctx.closePath();
+ctx.beginPath();
+ctx.arc(5, -4, 1.2, 0, Math.PI * 2);
+ctx.fillStyle = "#000000";
+ctx.fill();
+ctx.closePath();
+ctx.beginPath();
+ctx.moveTo(10, -2);
+ctx.lineTo(16, 1);
+ctx.lineTo(9, 4);
+ctx.fillStyle = "#ff6600";
+ctx.fill();
+ctx.closePath();
+ctx.beginPath();
+ctx.ellipse(-4, 2, 5, 3, Math.PI / 6, 0, Math.PI * 2);
+ctx.fillStyle = "#ffffff";
+ctx.fill();
+ctx.stroke();
+ctx.closePath();
+ctx.restore();
+ctx.fillStyle = "#ffffff";
+ctx.font = "bold 22px Arial";
+ctx.fillText("Score: " + score + " / " + TARGET_SCORE, 15, 35);
+ctx.font = "bold 13px Arial";
+if (score >= 13) {
+ctx.fillStyle = "#ffe600";
+ctx.fillText("Gold Tier reached!", 15, 60);
+} else if (score >= 10) {
+ctx.fillStyle = "#e0e0e0";
+ctx.fillText("Silver Tier reached!", 15, 60);
+} else if (score >= 5) {
+ctx.fillStyle = "#cd7f32";
+ctx.fillText("Bronze Tier reached!", 15, 60);
+}
+}
+function gameWin() {
+clearInterval(gameInterval);
+gameRunning = false;
+let winLoopCount = 0;
+let winInterval = setInterval(() => {
+ctx.clearRect(0, 0, canvas.width, canvas.height);
+ctx.fillStyle = "rgba(111, 66, 193, 0.9)";
+ctx.fillRect(0, 0, canvas.width, canvas.height);
+if (Math.random() < 0.3) createFirework();
+for (let i = fireworks.length - 1; i >= 0; i--) {
+let f = fireworks[i];
+f.x += f.vx;
+f.y += f.vy;
+f.alpha -= 0.015;
+if (f.alpha <= 0) {
+fireworks.splice(i, 1);
+} else {
+ctx.save();
+ctx.globalAlpha = f.alpha;
+ctx.beginPath();
+ctx.arc(f.x, f.y, 2.5, 0, Math.PI * 2);
+ctx.fillStyle = f.color;
+ctx.fill();
+ctx.restore();
+}
+}
+ctx.fillStyle = "#ffe600";
+ctx.font = "bold 35px Arial";
+ctx.fillText("VICTORY! ", 45, 150);
+ctx.fillStyle = "#ffffff";
+ctx.font = "bold 20px Arial";
+ctx.fillText("You Scored " + score + " Points!", 65, 200);
+ctx.fillStyle = "#00ffcc";
+ctx.font = "bold 16px Arial";
+ctx.fillText("Reward: ULTRA GOLD MEDAL!", 40, 240);
+winLoopCount++;
+if (!document.getElementById("gameSection").style.display === "block") {
+clearInterval(winInterval);
+}
+}, 1000 / 40);
+document.getElementById("startBtn").style.display = "inline-block";
+document.getElementById("startBtn").innerText = "Play Again ";
+document.getElementById("startBtn").onclick = function() {
+clearInterval(winInterval);
+startGame();
+};
+}
+function gameOver() {
+clearInterval(gameInterval);
+gameRunning = false;
+ctx.fillStyle = "rgba(0, 0, 0, 0.75)";
+ctx.fillRect(0, 0, canvas.width, canvas.height);
+ctx.fillStyle = "#ff4b2b";
+ctx.font = "bold 32px Arial";
+ctx.fillText("GAME OVER ", 55, 150);
+ctx.fillStyle = "#ffffff";
+ctx.font = "bold 18px Arial";
+ctx.fillText("Your Score: " + score, 110, 195);
+ctx.font = "bold 16px Arial";
+if (score >= 13) {
+ctx.fillStyle = "#ffe600";
+ctx.fillText("Reward: GOLD MEDAL!", 65, 245);
+} else if (score >= 10) {
+ctx.fillStyle = "#e0e0e0";
+ctx.fillText("Reward: SILVER MEDAL!", 65, 245);
+} else if (score >= 5) {
+ctx.fillStyle = "#cd7f32";
+ctx.fillText("Reward: BRONZE MEDAL!", 60, 245);
+} else {
+ctx.fillStyle = "#ff9999";
+ctx.fillText("Better luck next time! ", 70, 245);
+}
+document.getElementById("startBtn").style.display = "inline-block";
+document.getElementById("startBtn").innerText = "Try Again ";
+document.getElementById("startBtn").onclick = startGame;
+}
+function showIdInput(gameName) {
+selectedGame = gameName;
+document.getElementById("selectedGameTitle").innerText = "Enter your " + gameName + " ID";
+document.getElementById("idInputContainer").style.display = "block";
+document.getElementById("gameIdInput").value = "";
+}
+function sendToWhatsApp() {
+let gameId = document.getElementById("gameIdInput").value.trim();
+if (gameId === "") {
+alert("ദയവായി നിങ്ങളുടെ ഗെയിം ഐഡി ടൈപ്പ് ചെയ്യൂ!");
+return;
+}
+let whatsappNumber = "918138098290";
+let message = "ഹലോ അതുൽ, ഞാൻ ടൂർണമെന്റിൽ രജിസ്റ്റർ ചെയ്യാൻ താല്പര്യപ്പെടുന്നു.\n\n Game: " + selectedGame + "\n Player ID: " + gameId;
+let whatsappUrl = "https://api.whatsapp.com/send?phone=" + whatsappNumber + "&text=" + encodeURIComponent(message);
+window.location.href = whatsappUrl;
+}
+</script>
+</body>
+  </html>
